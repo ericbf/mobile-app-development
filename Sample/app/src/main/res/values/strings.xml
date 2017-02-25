@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Sample</string>
+    <string name="hello_world">Hello World!</string>
+    <string name="textview">TextView</string>
 </resources>
