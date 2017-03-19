@@ -12,7 +12,7 @@ import CoreData
 
 extension Appointment {
     @nonobjc public class func myFetchRequest() -> NSFetchRequest<Appointment> {
-		return NSFetchRequest<Appointment>(entityName: "Appointment")
+        return NSFetchRequest<Appointment>(entityName: "Appointment");
 	}
 	
 	@nonobjc public class func all(for context: NSManagedObjectContext) -> [Appointment] {
@@ -24,4 +24,5 @@ extension Appointment {
     @NSManaged public var start: Date
     @NSManaged public var duration: Int16
     @NSManaged public var client: Client
+    @NSManaged public var day: Day
 }

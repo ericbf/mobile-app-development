@@ -23,11 +23,30 @@ extension Client {
 
     @NSManaged public var firstName: String
     @NSManaged public var lastName: String
-    @NSManaged public var appointments: Set<Appointment>
+    @NSManaged public var appointments: NSOrderedSet
+    @NSManaged public var letter: Letter
 }
 
 // MARK: Generated accessors for appointments
 extension Client {
+    @objc(insertObject:inAppointmentsAtIndex:)
+    @NSManaged public func insertIntoAppointments(_ value: Appointment, at idx: Int)
+
+    @objc(removeObjectFromAppointmentsAtIndex:)
+    @NSManaged public func removeFromAppointments(at idx: Int)
+
+    @objc(insertAppointments:atIndexes:)
+    @NSManaged public func insertIntoAppointments(_ values: [Appointment], at indexes: NSIndexSet)
+
+    @objc(removeAppointmentsAtIndexes:)
+    @NSManaged public func removeFromAppointments(at indexes: NSIndexSet)
+
+    @objc(replaceObjectInAppointmentsAtIndex:withObject:)
+    @NSManaged public func replaceAppointments(at idx: Int, with value: Appointment)
+
+    @objc(replaceAppointmentsAtIndexes:withAppointments:)
+    @NSManaged public func replaceAppointments(at indexes: NSIndexSet, with values: [Appointment])
+
     @objc(addAppointmentsObject:)
     @NSManaged public func addToAppointments(_ value: Appointment)
 
@@ -35,8 +54,8 @@ extension Client {
     @NSManaged public func removeFromAppointments(_ value: Appointment)
 
     @objc(addAppointments:)
-    @NSManaged public func addToAppointments(_ values: Set<Appointment>)
+    @NSManaged public func addToAppointments(_ values: NSOrderedSet)
 
     @objc(removeAppointments:)
-    @NSManaged public func removeFromAppointments(_ values: Set<Appointment>)
+    @NSManaged public func removeFromAppointments(_ values: NSOrderedSet)
 }

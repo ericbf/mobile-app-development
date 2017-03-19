@@ -2,22 +2,28 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16D32" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Appointment" representedClassName="Appointment" syncable="YES">
         <attribute name="duration" attributeType="Integer 16" minValueString="15" maxValueString="120" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="start" attributeType="Date" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="start" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="client" maxCount="1" deletionRule="Nullify" destinationEntity="Client" inverseName="appointments" inverseEntity="Client" syncable="YES"/>
         <relationship name="day" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Day" inverseName="appointments" inverseEntity="Day" syncable="YES"/>
     </entity>
     <entity name="Client" representedClassName="Client" syncable="YES">
         <attribute name="firstName" attributeType="String" syncable="YES"/>
         <attribute name="lastName" attributeType="String" syncable="YES"/>
-        <relationship name="appointments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Appointment" inverseName="client" inverseEntity="Appointment" syncable="YES"/>
+        <relationship name="appointments" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Appointment" inverseName="client" inverseEntity="Appointment" syncable="YES"/>
+        <relationship name="letter" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Letter" inverseName="clients" inverseEntity="Letter" syncable="YES"/>
     </entity>
     <entity name="Day" representedClassName="Day" syncable="YES">
         <attribute name="date" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <relationship name="appointments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Appointment" inverseName="day" inverseEntity="Appointment" syncable="YES"/>
+        <relationship name="appointments" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Appointment" inverseName="day" inverseEntity="Appointment" syncable="YES"/>
+    </entity>
+    <entity name="Letter" representedClassName="Letter" syncable="YES">
+        <attribute name="value" attributeType="String" syncable="YES"/>
+        <relationship name="clients" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Client" inverseName="letter" inverseEntity="Client" syncable="YES"/>
     </entity>
     <elements>
         <element name="Appointment" positionX="-486" positionY="-79" width="128" height="103"/>
-        <element name="Client" positionX="-261" positionY="-81" width="128" height="88"/>
-        <element name="Day" positionX="-263" positionY="54" width="128" height="73"/>
+        <element name="Client" positionX="-297" positionY="-81" width="128" height="103"/>
+        <element name="Day" positionX="-675" positionY="0" width="128" height="73"/>
+        <element name="Letter" positionX="-110" positionY="-3" width="128" height="73"/>
     </elements>
 </model>

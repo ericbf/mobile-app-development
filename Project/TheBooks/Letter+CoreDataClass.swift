@@ -1,5 +1,5 @@
 //
-//  Day+CoreDataClass.swift
+//  Letter+CoreDataClass.swift
 //  TheBooks
 //
 //  Created by Eric Ferreira on 3/18/17.
@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-@objc(Day)
-public class Day: NSManagedObject {
+@objc(Letter)
+public class Letter: NSManagedObject {
 
 }

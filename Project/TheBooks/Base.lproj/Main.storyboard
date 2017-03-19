@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="QkV-EH-LJY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="s6A-38-ePp">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,24 +9,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
-        <scene sceneID="znE-MH-fQc">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QkV-EH-LJY" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cLH-zR-TIv">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="s6A-38-ePp" kind="relationship" relationship="rootViewController" id="llz-WO-yG6"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0UU-7i-x3w" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="253.59999999999999" y="-543.77811094452773"/>
-        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="fvY-1n-Qwi">
             <objects>
@@ -39,6 +21,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="Ec7-mk-XcR" kind="relationship" relationship="viewControllers" id="1nb-fc-v26"/>
+                        <segue destination="raM-DD-zfj" kind="relationship" relationship="viewControllers" id="7j0-Oe-K8m"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dyZ-Vy-jcn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -54,6 +37,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1XG-8c-vuY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1796" y="-824"/>
+        </scene>
+        <!--Clients-->
+        <scene sceneID="Vx4-iH-ZjP">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Clients" id="raM-DD-zfj" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Clients" id="DNL-0h-j4D"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rp5-uR-X7q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1809" y="-362"/>
         </scene>
     </scenes>
 </document>

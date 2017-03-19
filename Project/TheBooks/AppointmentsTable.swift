@@ -22,7 +22,7 @@ class AppointmentsTable: UITableViewController {
 	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		let formatter = DateFormatter()
 		
-		formatter.dateStyle = .short
+		formatter.dateFormat = "EEE  MMM d"
 		formatter.timeStyle = .none
 		
 		return formatter.string(from: days[section].date)
