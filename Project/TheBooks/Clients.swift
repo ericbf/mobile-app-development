@@ -43,6 +43,8 @@ class Clients: UITableViewController {
 	]
 	
 	override func viewDidLoad() {
+		super.viewDidLoad()
+		
 		indexed = letters.reduce([:]) {trans, current in
 			var trans = trans!
 			
@@ -50,6 +52,8 @@ class Clients: UITableViewController {
 			
 			return trans
 		}
+		
+		onDone?()
 	}
 	
 	override func sectionIndexTitles(for tableView: UITableView) -> [String]? {

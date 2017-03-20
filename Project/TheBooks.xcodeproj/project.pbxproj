@@ -12,7 +12,7 @@
 		077DB2C51E7DDF3800B05042 /* TheBooks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 077DB2C31E7DDF3800B05042 /* TheBooks.xcdatamodeld */; };
 		077DB2C71E7DDF3800B05042 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 077DB2C61E7DDF3800B05042 /* Assets.xcassets */; };
 		077DB2CA1E7DDF3800B05042 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 077DB2C81E7DDF3800B05042 /* LaunchScreen.storyboard */; };
-		07E5B81B1E7E1C68009783C2 /* Clients.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07E5B81A1E7E1C68009783C2 /* Clients.storyboard */; };
+		07E5B81B1E7E1C68009783C2 /* ClientsFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07E5B81A1E7E1C68009783C2 /* ClientsFlow.storyboard */; };
 		07E5B81D1E7E1F62009783C2 /* Clients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E5B81C1E7E1F62009783C2 /* Clients.swift */; };
 		07E5B82A1E7E2E62009783C2 /* Appointment+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E5B8221E7E2E62009783C2 /* Appointment+CoreDataClass.swift */; };
 		07E5B82B1E7E2E62009783C2 /* Appointment+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E5B8231E7E2E62009783C2 /* Appointment+CoreDataProperties.swift */; };
@@ -24,10 +24,13 @@
 		07E5B8311E7E2E62009783C2 /* Letter+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E5B8291E7E2E62009783C2 /* Letter+CoreDataProperties.swift */; };
 		07E5B8381E7E3310009783C2 /* AddClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E5B8371E7E3310009783C2 /* AddClient.swift */; };
 		07E5B83A1E7E3364009783C2 /* AddClient.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07E5B8391E7E3364009783C2 /* AddClient.storyboard */; };
-		07E5B83C1E7E36C2009783C2 /* DismissController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E5B83B1E7E36C2009783C2 /* DismissController.swift */; };
+		07E5B83C1E7E36C2009783C2 /* DismissSelf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E5B83B1E7E36C2009783C2 /* DismissSelf.swift */; };
 		07E5B83F1E7E38AB009783C2 /* AddAppointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E5B83E1E7E38AB009783C2 /* AddAppointment.swift */; };
 		07E5B8411E7E390E009783C2 /* AddAppointment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07E5B8401E7E390E009783C2 /* AddAppointment.storyboard */; };
-		07EF3D1F1E7DE2BC00161A26 /* Appointments.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07EF3D1E1E7DE2BC00161A26 /* Appointments.storyboard */; };
+		07E5B8431E803B82009783C2 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E5B8421E803B82009783C2 /* BaseViewController.swift */; };
+		07E5B8471E806EB2009783C2 /* PresentModallyWithNavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E5B8461E806EB2009783C2 /* PresentModallyWithNavigationItem.swift */; };
+		07E5B84B1E8075E6009783C2 /* AssociatedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E5B84A1E8075E6009783C2 /* AssociatedObject.swift */; };
+		07EF3D1F1E7DE2BC00161A26 /* AppointmentsFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07EF3D1E1E7DE2BC00161A26 /* AppointmentsFlow.storyboard */; };
 		07EF3D211E7DE3FE00161A26 /* Appointments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EF3D201E7DE3FE00161A26 /* Appointments.swift */; };
 		07EF3D231E7DE99700161A26 /* AppointmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EF3D221E7DE99700161A26 /* AppointmentCell.swift */; };
 		42B8A658F4D5D6902FD59DDC /* Pods_TheBooks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 097455DE45C24ED231FABBC0 /* Pods_TheBooks.framework */; };
@@ -41,7 +44,7 @@
 		077DB2C61E7DDF3800B05042 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		077DB2C91E7DDF3800B05042 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		077DB2CB1E7DDF3800B05042 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		07E5B81A1E7E1C68009783C2 /* Clients.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Clients.storyboard; sourceTree = "<group>"; };
+		07E5B81A1E7E1C68009783C2 /* ClientsFlow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ClientsFlow.storyboard; sourceTree = "<group>"; };
 		07E5B81C1E7E1F62009783C2 /* Clients.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clients.swift; sourceTree = "<group>"; };
 		07E5B8221E7E2E62009783C2 /* Appointment+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Appointment+CoreDataClass.swift"; sourceTree = "<group>"; };
 		07E5B8231E7E2E62009783C2 /* Appointment+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Appointment+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -53,10 +56,13 @@
 		07E5B8291E7E2E62009783C2 /* Letter+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Letter+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		07E5B8371E7E3310009783C2 /* AddClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddClient.swift; sourceTree = "<group>"; };
 		07E5B8391E7E3364009783C2 /* AddClient.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AddClient.storyboard; sourceTree = "<group>"; };
-		07E5B83B1E7E36C2009783C2 /* DismissController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissController.swift; sourceTree = "<group>"; };
+		07E5B83B1E7E36C2009783C2 /* DismissSelf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissSelf.swift; sourceTree = "<group>"; };
 		07E5B83E1E7E38AB009783C2 /* AddAppointment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAppointment.swift; sourceTree = "<group>"; };
 		07E5B8401E7E390E009783C2 /* AddAppointment.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AddAppointment.storyboard; sourceTree = "<group>"; };
-		07EF3D1E1E7DE2BC00161A26 /* Appointments.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Appointments.storyboard; sourceTree = "<group>"; };
+		07E5B8421E803B82009783C2 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		07E5B8461E806EB2009783C2 /* PresentModallyWithNavigationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentModallyWithNavigationItem.swift; sourceTree = "<group>"; };
+		07E5B84A1E8075E6009783C2 /* AssociatedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssociatedObject.swift; sourceTree = "<group>"; };
+		07EF3D1E1E7DE2BC00161A26 /* AppointmentsFlow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AppointmentsFlow.storyboard; sourceTree = "<group>"; };
 		07EF3D201E7DE3FE00161A26 /* Appointments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Appointments.swift; sourceTree = "<group>"; };
 		07EF3D221E7DE99700161A26 /* AppointmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppointmentCell.swift; sourceTree = "<group>"; };
 		097455DE45C24ED231FABBC0 /* Pods_TheBooks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TheBooks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,13 +103,17 @@
 		077DB2BB1E7DDF3800B05042 /* TheBooks */ = {
 			isa = PBXGroup;
 			children = (
+				07EF3D1C1E7DE29700161A26 /* Appointments */,
+				07EF3D1D1E7DE2A300161A26 /* Clients */,
+				07E5B8451E803E7A009783C2 /* ViewAppointment */,
+				07E5B8441E803E6F009783C2 /* ViewClient */,
 				07E5B83D1E7E387F009783C2 /* AddAppointment */,
 				07E5B8361E7E32B7009783C2 /* AddClient */,
-				07EF3D1D1E7DE2A300161A26 /* Clients */,
-				07EF3D1C1E7DE29700161A26 /* Appointments */,
 				077DB2BC1E7DDF3800B05042 /* AppDelegate.swift */,
+				07E5B8421E803B82009783C2 /* BaseViewController.swift */,
 				077DB2C01E7DDF3800B05042 /* Main.storyboard */,
-				07E5B83B1E7E36C2009783C2 /* DismissController.swift */,
+				07E5B8491E8075D8009783C2 /* Helpers */,
+				07E5B8481E80734D009783C2 /* Custom Segues */,
 				077DB2C61E7DDF3800B05042 /* Assets.xcassets */,
 				077DB2C81E7DDF3800B05042 /* LaunchScreen.storyboard */,
 				077DB2CB1E7DDF3800B05042 /* Info.plist */,
@@ -146,10 +156,41 @@
 			name = AddAppointment;
 			sourceTree = "<group>";
 		};
+		07E5B8441E803E6F009783C2 /* ViewClient */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ViewClient;
+			sourceTree = "<group>";
+		};
+		07E5B8451E803E7A009783C2 /* ViewAppointment */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ViewAppointment;
+			sourceTree = "<group>";
+		};
+		07E5B8481E80734D009783C2 /* Custom Segues */ = {
+			isa = PBXGroup;
+			children = (
+				07E5B83B1E7E36C2009783C2 /* DismissSelf.swift */,
+				07E5B8461E806EB2009783C2 /* PresentModallyWithNavigationItem.swift */,
+			);
+			name = "Custom Segues";
+			sourceTree = "<group>";
+		};
+		07E5B8491E8075D8009783C2 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				07E5B84A1E8075E6009783C2 /* AssociatedObject.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		07EF3D1C1E7DE29700161A26 /* Appointments */ = {
 			isa = PBXGroup;
 			children = (
-				07EF3D1E1E7DE2BC00161A26 /* Appointments.storyboard */,
+				07EF3D1E1E7DE2BC00161A26 /* AppointmentsFlow.storyboard */,
 				07EF3D201E7DE3FE00161A26 /* Appointments.swift */,
 				07EF3D221E7DE99700161A26 /* AppointmentCell.swift */,
 			);
@@ -159,7 +200,7 @@
 		07EF3D1D1E7DE2A300161A26 /* Clients */ = {
 			isa = PBXGroup;
 			children = (
-				07E5B81A1E7E1C68009783C2 /* Clients.storyboard */,
+				07E5B81A1E7E1C68009783C2 /* ClientsFlow.storyboard */,
 				07E5B81C1E7E1F62009783C2 /* Clients.swift */,
 			);
 			name = Clients;
@@ -245,12 +286,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07EF3D1F1E7DE2BC00161A26 /* Appointments.storyboard in Resources */,
+				07EF3D1F1E7DE2BC00161A26 /* AppointmentsFlow.storyboard in Resources */,
 				07E5B8411E7E390E009783C2 /* AddAppointment.storyboard in Resources */,
 				077DB2CA1E7DDF3800B05042 /* LaunchScreen.storyboard in Resources */,
 				077DB2C71E7DDF3800B05042 /* Assets.xcassets in Resources */,
 				07E5B83A1E7E3364009783C2 /* AddClient.storyboard in Resources */,
-				07E5B81B1E7E1C68009783C2 /* Clients.storyboard in Resources */,
+				07E5B81B1E7E1C68009783C2 /* ClientsFlow.storyboard in Resources */,
 				077DB2C21E7DDF3800B05042 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -317,15 +358,18 @@
 				07EF3D211E7DE3FE00161A26 /* Appointments.swift in Sources */,
 				07E5B82A1E7E2E62009783C2 /* Appointment+CoreDataClass.swift in Sources */,
 				07E5B82E1E7E2E62009783C2 /* Client+CoreDataClass.swift in Sources */,
+				07E5B84B1E8075E6009783C2 /* AssociatedObject.swift in Sources */,
+				07E5B8431E803B82009783C2 /* BaseViewController.swift in Sources */,
 				07E5B83F1E7E38AB009783C2 /* AddAppointment.swift in Sources */,
 				07E5B82C1E7E2E62009783C2 /* Day+CoreDataClass.swift in Sources */,
 				07E5B8381E7E3310009783C2 /* AddClient.swift in Sources */,
 				07E5B82D1E7E2E62009783C2 /* Day+CoreDataProperties.swift in Sources */,
 				07E5B82F1E7E2E62009783C2 /* Client+CoreDataProperties.swift in Sources */,
-				07E5B83C1E7E36C2009783C2 /* DismissController.swift in Sources */,
+				07E5B83C1E7E36C2009783C2 /* DismissSelf.swift in Sources */,
 				077DB2BD1E7DDF3800B05042 /* AppDelegate.swift in Sources */,
 				07E5B82B1E7E2E62009783C2 /* Appointment+CoreDataProperties.swift in Sources */,
 				07EF3D231E7DE99700161A26 /* AppointmentCell.swift in Sources */,
+				07E5B8471E806EB2009783C2 /* PresentModallyWithNavigationItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,4 +18,14 @@ class AddAppointment: UIViewController {
 		
 		close()
 	}
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if let clients = segue.destination as? Clients {
+			print("clients")
+			
+			clients.onDone = {
+				print("done")
+			}
+		}
+	}
 }

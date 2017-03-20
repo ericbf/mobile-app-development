@@ -8,8 +8,8 @@
 
 import UIKit
 
-class DismissController: UIStoryboardSegue {
+class DismissSelf: UIStoryboardSegue {
 	override func perform() {
-		self.source.presentingViewController?.dismiss(animated: true, completion: nil)
+		self.source.dismiss(animated: true, completion: nil)
 	}
 }
