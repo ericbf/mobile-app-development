@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ClientsTable: UITableViewController {
+class Clients: UITableViewController {
 	var letters = Letter.all(for: (UIApplication.shared.delegate as! AppDelegate).context)
 	var indexed: [String: Letter]!
 	
@@ -52,6 +52,10 @@ class ClientsTable: UITableViewController {
 		}
 	}
 	
+	override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+		return keys
+	}
+	
 	override func numberOfSections(in tableView: UITableView) -> Int {
 		return keys.count
 	}
@@ -61,7 +65,9 @@ class ClientsTable: UITableViewController {
 	}
 	
 	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		return keys[section]
+		let rows = self.tableView(tableView, numberOfRowsInSection: section)
+		
+		return rows > 0 ? keys[section] : nil
 	}
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3kc-b4-JVs">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--New Client-->
+        <scene sceneID="qzK-Le-idW">
+            <objects>
+                <viewController id="fMe-v8-0R0" customClass="AddClient" customModule="TheBooks" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PoJ-0j-Sc1"/>
+                        <viewControllerLayoutGuide type="bottom" id="vnn-VF-99J"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Gk9-Zi-mA0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="New Client" id="CX1-YA-HD2">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="awm-OH-0tG">
+                            <connections>
+                                <action selector="close" destination="fMe-v8-0R0" id="pY8-TH-mwD"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="done" id="RCP-9P-Jtj">
+                            <connections>
+                                <action selector="done" destination="fMe-v8-0R0" id="gW5-Qf-NRD"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tF7-LQ-9Yf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4720.8000000000002" y="-765.06746626686663"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="mTf-nN-ILC">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3kc-b4-JVs" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cCU-5A-Mem">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="fMe-v8-0R0" kind="relationship" relationship="rootViewController" id="1it-W4-PZN"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ebl-wJ-SdS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3781.5999999999999" y="-765.06746626686663"/>
+        </scene>
+    </scenes>
+</document>

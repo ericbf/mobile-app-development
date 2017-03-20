@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Jm7-dt-tIK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="yph-Mk-UaB">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -12,7 +12,7 @@
         <!--Appointments-->
         <scene sceneID="WbQ-iB-bGc">
             <objects>
-                <tableViewController id="NWA-Vp-9jZ" customClass="AppointmentsTable" customModule="TheBooks" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="NWA-Vp-9jZ" customClass="Appointments" customModule="TheBooks" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="52" sectionHeaderHeight="28" sectionFooterHeight="28" id="kvy-Og-A7g">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -74,7 +74,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Appointments" id="J9q-St-Aww">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="hZb-OX-W1C"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="hZb-OX-W1C">
+                            <connections>
+                                <segue destination="8Tv-SP-foe" kind="presentation" id="n0N-CV-S1Z"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -83,23 +87,33 @@
             </objects>
             <point key="canvasLocation" x="879.20000000000005" y="64.31784107946028"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="ETR-Qt-Dl9">
+        <!--Appointments-->
+        <scene sceneID="mTS-n4-hwz">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Jm7-dt-tIK" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yph-Mk-UaB" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Appointments" id="Ehj-0K-x1F"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="XN5-G8-2e2">
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="tle-RO-k3S">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="NWA-Vp-9jZ" kind="relationship" relationship="rootViewController" id="BTe-aB-upD"/>
+                        <segue destination="NWA-Vp-9jZ" kind="relationship" relationship="rootViewController" id="T0Y-PB-Ctz"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bBs-hb-dbh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PXI-Ma-odG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-60" y="64.31784107946028"/>
+            <point key="canvasLocation" x="-36" y="64"/>
+        </scene>
+        <!--AddAppointment-->
+        <scene sceneID="9gK-Uh-V0E">
+            <objects>
+                <viewControllerPlaceholder storyboardName="AddAppointment" id="8Tv-SP-foe" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XzW-qc-urB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1868" y="63"/>
         </scene>
     </scenes>
 </document>

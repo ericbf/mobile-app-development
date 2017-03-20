@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AppointmentsTable: UITableViewController {
+class Appointments: UITableViewController {
 	var days = Day.all(for: (UIApplication.shared.delegate as! AppDelegate).context)
 	
 	override func numberOfSections(in tableView: UITableView) -> Int {
