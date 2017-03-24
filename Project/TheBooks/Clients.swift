@@ -9,7 +9,7 @@
 import UIKit
 
 class Clients: UITableViewController {
-	var letters = Letter.all(for: (UIApplication.shared.delegate as! AppDelegate).context)
+	lazy var letters = Letter.all(for: (UIApplication.shared.delegate as! AppDelegate).context)
 	var indexed: [String: Letter]!
 	
 	let keys = [
@@ -42,6 +42,10 @@ class Clients: UITableViewController {
 		"#"
 	]
 	
+	lazy var onSelect: ((Client) -> ())? = {
+		self.performSegue(withIdentifier: "OpenViewClient", sender: $0)
+	}
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
@@ -52,8 +56,15 @@ class Clients: UITableViewController {
 			
 			return trans
 		}
-		
-		onDone?()
+	}
+	
+	
+	// Handle segue to show
+	
+	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		if let client = indexed[keys[indexPath.section]]?.clients[indexPath.row] as? Client {
+			onSelect?(client)
+		}
 	}
 	
 	override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
@@ -86,5 +97,23 @@ class Clients: UITableViewController {
 		}
 		
 		return cell
+	}
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if let newClient = segue.destination as? NewClient {
+			newClient.onDone = {client in
+				let key = client.letter.value
+				
+				if !self.indexed.has(key: key) {
+					self.indexed[key] = client.letter
+				}
+				
+				let index = self.keys.index(of: key)!
+				
+				self.tableView.reloadSections([index], with: .automatic)
+				
+				newClient.dismissSelf()
+			}
+		}
 	}
 }

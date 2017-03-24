@@ -9,16 +9,32 @@
 import Foundation
 import CoreData
 
+private let name = "Client"
 
 extension Client {
     @nonobjc public class func myFetchRequest() -> NSFetchRequest<Client> {
-        return NSFetchRequest<Client>(entityName: "Client");
+        return NSFetchRequest<Client>(entityName: name);
 	}
 	
 	@nonobjc public class func all(for context: NSManagedObjectContext) -> [Client] {
 		let maybeArray = try? context.fetch(myFetchRequest())
 		
 		return maybeArray ?? []
+	}
+	
+	@nonobjc public class func make(for context: NSManagedObjectContext) -> Client {
+		return NSEntityDescription.insertNewObject(forEntityName: name, into: context) as! Client
+	}
+	
+	@nonobjc public func sort() {
+		let sortDescriptors = [
+			NSSortDescriptor(key: "start", ascending: true),
+			NSSortDescriptor(key: "duration", ascending: true)
+		]
+		
+		let sorted = appointments.sortedArray(using: sortDescriptors)
+		
+		appointments = NSOrderedSet(array: sorted)
 	}
 
     @NSManaged public var firstName: String

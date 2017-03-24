@@ -22,11 +22,11 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5Pl-ge-r8a" id="MJ7-nK-wNn">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gfN-Lz-dxA">
-                                            <rect key="frame" x="15" y="0.0" width="345" height="43"/>
+                                            <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -48,18 +48,21 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="Xc7-i8-Vd7" kind="show" identifier="OpenViewClient" id="bcK-6I-bQ7"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d6O-PH-Vre" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3696.8000000000002" y="-773.16341829085468"/>
         </scene>
-        <!--AddClient-->
+        <!--NewClient-->
         <scene sceneID="yPP-Nm-KCj">
             <objects>
-                <viewControllerPlaceholder storyboardName="AddClient" id="jAb-vp-PEX" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="NewClient" id="jAb-vp-PEX" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qw0-Lt-DxT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4403.1999999999998" y="-774.51274362818594"/>
+            <point key="canvasLocation" x="4403" y="-703"/>
         </scene>
         <!--Clients-->
         <scene sceneID="p9P-k4-pW7">
@@ -80,6 +83,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aea-IF-e9W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2757.5999999999999" y="-773.16341829085468"/>
+        </scene>
+        <!--ViewClient-->
+        <scene sceneID="YhD-62-OGA">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ViewClient" id="Xc7-i8-Vd7" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E1e-ke-GAR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4402" y="-841"/>
         </scene>
     </scenes>
 </document>

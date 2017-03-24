@@ -12,7 +12,7 @@
         <!--New Appointment-->
         <scene sceneID="pGN-Un-icY">
             <objects>
-                <viewController id="Cky-7I-D15" customClass="AddAppointment" customModule="TheBooks" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Cky-7I-D15" customClass="NewAppointment" customModule="TheBooks" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5K2-o6-TOh"/>
                         <viewControllerLayoutGuide type="bottom" id="Z0X-4C-S8d"/>

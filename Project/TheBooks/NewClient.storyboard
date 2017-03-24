@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fMe-v8-0R0">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--New Client-->
+        <scene sceneID="qzK-Le-idW">
+            <objects>
+                <viewController id="fMe-v8-0R0" customClass="NewClient" customModule="TheBooks" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PoJ-0j-Sc1"/>
+                        <viewControllerLayoutGuide type="bottom" id="vnn-VF-99J"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Gk9-Zi-mA0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="YRh-Z1-uPa">
+                                <rect key="frame" x="16" y="72" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                <connections>
+                                    <action selector="revalidate" destination="fMe-v8-0R0" eventType="editingChanged" id="o6M-GA-yUP"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="KJJ-k6-y3d">
+                                <rect key="frame" x="16" y="110" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                <connections>
+                                    <action selector="revalidate" destination="fMe-v8-0R0" eventType="editingChanged" id="60G-I0-3tq"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YRh-Z1-uPa" firstAttribute="top" secondItem="PoJ-0j-Sc1" secondAttribute="bottom" constant="8" id="73b-dP-BCG"/>
+                            <constraint firstItem="KJJ-k6-y3d" firstAttribute="top" secondItem="YRh-Z1-uPa" secondAttribute="bottom" constant="8" id="8Jq-nc-ff9"/>
+                            <constraint firstItem="KJJ-k6-y3d" firstAttribute="leading" secondItem="Gk9-Zi-mA0" secondAttribute="leadingMargin" id="EP1-y5-gtD"/>
+                            <constraint firstItem="YRh-Z1-uPa" firstAttribute="leading" secondItem="Gk9-Zi-mA0" secondAttribute="leadingMargin" id="RvC-CN-fpA"/>
+                            <constraint firstItem="YRh-Z1-uPa" firstAttribute="trailing" secondItem="Gk9-Zi-mA0" secondAttribute="trailingMargin" id="YzK-8j-ZqP"/>
+                            <constraint firstItem="KJJ-k6-y3d" firstAttribute="trailing" secondItem="Gk9-Zi-mA0" secondAttribute="trailingMargin" id="tBS-Xo-tu4"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="New Client" id="OvQ-cg-7hK">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="awm-OH-0tG">
+                            <connections>
+                                <action selector="dismissSelf" destination="fMe-v8-0R0" id="sBe-ng-ljV"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="done" id="RCP-9P-Jtj">
+                            <connections>
+                                <action selector="done" destination="fMe-v8-0R0" id="gW5-Qf-NRD"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="firstNameField" destination="YRh-Z1-uPa" id="K5s-jZ-E5z"/>
+                        <outlet property="lastNameField" destination="KJJ-k6-y3d" id="lot-7f-PBt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tF7-LQ-9Yf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4720.8000000000002" y="-765.06746626686663"/>
+        </scene>
+    </scenes>
+</document>

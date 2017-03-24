@@ -9,10 +9,11 @@
 import Foundation
 import CoreData
 
+private let name = "Letter"
 
 extension Letter {
     @nonobjc public class func myFetchRequest() -> NSFetchRequest<Letter> {
-        return NSFetchRequest<Letter>(entityName: "Letter");
+        return NSFetchRequest<Letter>(entityName: name);
 	}
 	
 	@nonobjc public class func all(for context: NSManagedObjectContext) -> [Letter] {
@@ -20,10 +21,24 @@ extension Letter {
 		
 		return maybeArray ?? []
 	}
+	
+	@nonobjc public class func make(for context: NSManagedObjectContext) -> Letter {
+		return NSEntityDescription.insertNewObject(forEntityName: name, into: context) as! Letter
+	}
+	
+	@nonobjc public func sort() {
+		let sortDescriptors = [
+			NSSortDescriptor(key: "firstName", ascending: true),
+			NSSortDescriptor(key: "lastName", ascending: true)
+		]
+		
+		let sorted = clients.sortedArray(using: sortDescriptors)
+		
+		clients = NSOrderedSet(array: sorted)
+	}
 
     @NSManaged public var value: String
     @NSManaged public var clients: NSOrderedSet
-
 }
 
 // MARK: Generated accessors for clients

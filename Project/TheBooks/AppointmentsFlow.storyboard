@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="52"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HBH-m5-9in" id="AJP-rl-BV6">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="51"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="51.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eG1-w0-rcR">
@@ -85,10 +85,10 @@
             </objects>
             <point key="canvasLocation" x="1818.4000000000001" y="64.31784107946028"/>
         </scene>
-        <!--AddAppointment-->
+        <!--NewAppointment-->
         <scene sceneID="9gK-Uh-V0E">
             <objects>
-                <viewControllerPlaceholder storyboardName="AddAppointment" id="8Tv-SP-foe" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="NewAppointment" id="8Tv-SP-foe" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XzW-qc-urB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2624.8000000000002" y="63.868065967016499"/>

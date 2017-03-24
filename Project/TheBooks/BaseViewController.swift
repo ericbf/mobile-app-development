@@ -8,14 +8,18 @@
 
 import UIKit
 
-private var key: UInt8 = 0
+private var key_onDone: UInt8 = 0
 extension UIViewController {
-	var onDone: (() -> ())? {
-		get {
-			return associated(with: self, key: &key) { nil }
-		}
-		set {
-			associate(with: self, key: &key, value: newValue)
-		}
+//	var onDone: ((Any?) -> ())? {
+//		get {
+//			return associated(with: self, key: &key_onDone) { nil }
+//		}
+//		set {
+//			associate(with: self, key: &key_onDone, newValue)
+//		}
+//	}
+	
+	@IBAction func dismissSelf() {
+		dismiss(animated: true, completion: nil)
 	}
 }

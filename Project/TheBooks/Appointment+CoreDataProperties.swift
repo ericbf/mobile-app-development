@@ -9,16 +9,21 @@
 import Foundation
 import CoreData
 
+private let name = "Appointment"
 
 extension Appointment {
     @nonobjc public class func myFetchRequest() -> NSFetchRequest<Appointment> {
-        return NSFetchRequest<Appointment>(entityName: "Appointment");
+        return NSFetchRequest<Appointment>(entityName: name)
 	}
 	
 	@nonobjc public class func all(for context: NSManagedObjectContext) -> [Appointment] {
 		let maybeArray = try? context.fetch(myFetchRequest())
 		
 		return maybeArray ?? []
+	}
+	
+	@nonobjc public class func make(for context: NSManagedObjectContext) -> Appointment {
+		return NSEntityDescription.insertNewObject(forEntityName: name, into: context) as! Appointment
 	}
 
     @NSManaged public var start: Date

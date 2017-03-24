@@ -1,5 +1,5 @@
 //
-//  AddAppointment.swift
+//  NewAppointment.swift
 //  TheBooks
 //
 //  Created by Eric Ferreira on 3/18/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddAppointment: UIViewController {
+class NewAppointment: UIViewController {
 	@IBAction func close() {
 		dismiss(animated: true, completion: nil)
 	}
@@ -21,10 +21,10 @@ class AddAppointment: UIViewController {
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if let clients = segue.destination as? Clients {
-			print("clients")
+			clients.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: clients, action: #selector(Clients.dismissSelf))
 			
-			clients.onDone = {
-				print("done")
+			clients.onSelect = {_ in
+				clients.dismissSelf()
 			}
 		}
 	}
