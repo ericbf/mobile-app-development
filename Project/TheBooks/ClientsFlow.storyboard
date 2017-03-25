@@ -56,10 +56,10 @@
             </objects>
             <point key="canvasLocation" x="3696.8000000000002" y="-773.16341829085468"/>
         </scene>
-        <!--NewClient-->
+        <!--ViewClient-->
         <scene sceneID="yPP-Nm-KCj">
             <objects>
-                <viewControllerPlaceholder storyboardName="NewClient" id="jAb-vp-PEX" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="ViewClient" id="jAb-vp-PEX" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qw0-Lt-DxT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4403" y="-703"/>
@@ -68,7 +68,9 @@
         <scene sceneID="p9P-k4-pW7">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3Zz-dZ-T1b" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Clients" id="NZd-1z-DsG"/>
+                    <tabBarItem key="tabBarItem" title="Clients" image="clients" selectedImage="clients" id="NZd-1z-DsG">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-2"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ehz-nI-NJS">
@@ -93,4 +95,7 @@
             <point key="canvasLocation" x="4402" y="-841"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="clients" width="23" height="23"/>
+    </resources>
 </document>

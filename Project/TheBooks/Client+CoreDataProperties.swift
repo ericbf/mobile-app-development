@@ -9,21 +9,27 @@
 import Foundation
 import CoreData
 
-private let name = "Client"
+private let NAME = "Client"
 
 extension Client {
+	@NSManaged public var firstName: String
+	@NSManaged public var lastName: String
+	@NSManaged public var phone: String
+	@NSManaged public var email: String
+	@NSManaged public var appointments: NSOrderedSet
+	
     @nonobjc public class func myFetchRequest() -> NSFetchRequest<Client> {
-        return NSFetchRequest<Client>(entityName: name);
+        return NSFetchRequest<Client>(entityName: NAME);
 	}
 	
 	@nonobjc public class func all(for context: NSManagedObjectContext) -> [Client] {
 		let maybeArray = try? context.fetch(myFetchRequest())
 		
-		return maybeArray ?? []
+		return (maybeArray ?? []).sorted { $0.sortString < $1.sortString }
 	}
 	
 	@nonobjc public class func make(for context: NSManagedObjectContext) -> Client {
-		return NSEntityDescription.insertNewObject(forEntityName: name, into: context) as! Client
+		return NSEntityDescription.insertNewObject(forEntityName: NAME, into: context) as! Client
 	}
 	
 	@nonobjc public func sort() {
@@ -36,11 +42,55 @@ extension Client {
 		
 		appointments = NSOrderedSet(array: sorted)
 	}
-
-    @NSManaged public var firstName: String
-    @NSManaged public var lastName: String
-    @NSManaged public var appointments: NSOrderedSet
-    @NSManaged public var letter: Letter
+	
+	private func isValid(_ str: String?) -> Bool {
+		return str != nil && str!.characters.count > 0
+	}
+	
+	public var name: String? {
+		if isValid(firstName) || isValid(lastName) {
+			if isValid(firstName) && isValid(lastName) {
+				return "\(firstName) \(lastName)"
+			}
+			
+			if isValid(firstName) {
+				return firstName
+			}
+			
+			return lastName
+		}
+		
+		return nil
+	}
+	
+	public var displayString: String {
+		if isValid(name) {
+			return name!
+		}
+		
+		if isValid(email) {
+			return email
+		}
+		
+		if isValid(phone) {
+			return phone
+		}
+		
+		return "<missing info>"
+	}
+	
+	public var sortString: String {
+		return displayString
+	}
+	
+	public var key: Character {
+		switch sortString.substring(to: 1) {
+		case ~/"[a-zA-Z]":
+			return sortString.uppercased().first
+		default:
+			return "#"
+		}
+	}
 }
 
 // MARK: Generated accessors for appointments

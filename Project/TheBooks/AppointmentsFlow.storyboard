@@ -97,7 +97,9 @@
         <scene sceneID="Dl0-lp-la8">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="S2H-Jf-rqu" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Appointments" id="Ehj-0K-x1F"/>
+                    <tabBarItem key="tabBarItem" title="Appointments" image="appointments" selectedImage="appointments" id="Ehj-0K-x1F">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-2"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="lvw-kf-6oL">
@@ -114,4 +116,7 @@
             <point key="canvasLocation" x="879.20000000000005" y="64.31784107946028"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="appointments" width="23" height="23"/>
+    </resources>
 </document>

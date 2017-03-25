@@ -9,23 +9,41 @@
 import UIKit
 
 class Appointments: UITableViewController {
-	var days = Day.all(for: (UIApplication.shared.delegate as! AppDelegate).context)
+	let context = (UIApplication.shared.delegate as! AppDelegate).context
+	var appointments: [Appointment] = []
+	var sections: [String: [Appointment]] = [:]
+	var sorted: [(key: String, value: [Appointment])] = []
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		
+		appointments = Appointment.all(for: context)
+		sections = appointments.reduce([:]) {trans, curr in
+			var trans = trans
+			
+			if trans.has(key: curr.key) {
+				trans[curr.key] = []
+			}
+			
+			trans[curr.key]!.append(curr)
+			
+			return trans
+		}
+		sorted = self.sections.sorted {
+			return $0.value.first!.start < $1.value.first!.start
+		}
+	}
 	
 	override func numberOfSections(in tableView: UITableView) -> Int {
-		return days.count
+		return sorted.count
 	}
 	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return days[section].appointments.count
+		return sorted[section].value.count
 	}
 	
 	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		let formatter = DateFormatter()
-		
-		formatter.dateFormat = "EEE  MMM d"
-		formatter.timeStyle = .none
-		
-		return formatter.string(from: days[section].date)
+		return sorted[section].key
 	}
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
