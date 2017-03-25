@@ -27,9 +27,14 @@ class ViewClient: UITableViewController {
 			initialPhone = client.phone
 			initialEmail = client.email
 			
+			navigationItem.title = "View Client"
 			navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(ViewClient.done))
 			navigationItem.rightBarButtonItem?.isEnabled = false
 		}
+	}
+	
+	var isMakingNewClient: Bool {
+		return client == nil
 	}
 	
 	private var firstName: String {
@@ -75,16 +80,19 @@ class ViewClient: UITableViewController {
 	
 	override func viewDidLoad() {
 		if let client = client {
+			// Manually trigger the didSet
 			self.client = client
 		}
 	}
 	
 	override func numberOfSections(in tableView: UITableView) -> Int {
-		return client != nil ? 3 : 2
+		return isMakingNewClient ? 2 : super.numberOfSections(in: tableView)
 	}
 	
+	@IBOutlet weak var deleteClientCell: UITableViewCell!
+	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		if indexPath.section == 2 && indexPath.row == 0 {
+		if tableView.cellForRow(at: indexPath) == deleteClientCell {
 			self.tableView.deselectRow(at: indexPath, animated: true)
 			self.presentSheet(
 				("Cancel", .cancel, nil),
@@ -129,5 +137,11 @@ class ViewClient: UITableViewController {
 		try? context.save()
 		
 		onDone!(client)
+	}
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if let appointments = segue.destination as? Appointments {
+			appointments.client = client
+		}
 	}
 }

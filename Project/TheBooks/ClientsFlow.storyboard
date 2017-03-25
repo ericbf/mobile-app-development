@@ -13,10 +13,27 @@
         <scene sceneID="Yun-ZG-2XQ">
             <objects>
                 <tableViewController storyboardIdentifier="ClientsTable" id="aN0-6c-cii" customClass="Clients" customModule="TheBooks" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="RKq-ep-0Pz">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="RKq-ep-0Pz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="82T-XB-KLb">
+                            <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jSu-wy-zaD">
+                                    <rect key="frame" x="164.5" y="10.5" width="46.5" height="23"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                    <color key="textColor" red="0.31372549019607843" green="0.31372549019607843" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="jSu-wy-zaD" firstAttribute="centerY" secondItem="82T-XB-KLb" secondAttribute="centerY" id="4Qz-P5-2d4"/>
+                                <constraint firstItem="jSu-wy-zaD" firstAttribute="centerX" secondItem="82T-XB-KLb" secondAttribute="centerX" id="KKA-r4-rFF"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="gfN-Lz-dxA" style="IBUITableViewCellStyleDefault" id="5Pl-ge-r8a">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -49,6 +66,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="countLabel" destination="jSu-wy-zaD" id="1Ea-Dm-GYD"/>
                         <segue destination="Xc7-i8-Vd7" kind="show" identifier="OpenViewClient" id="bcK-6I-bQ7"/>
                     </connections>
                 </tableViewController>

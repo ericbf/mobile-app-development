@@ -14,10 +14,17 @@ class Appointments: UITableViewController {
 	var sections: [String: [Appointment]] = [:]
 	var sorted: [(key: String, value: [Appointment])] = []
 	
+	var client: Client?
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
 		appointments = Appointment.all(for: context)
+		
+		if let client = client {
+			appointments = appointments.filter {$0.client == client}
+		}
+		
 		sections = appointments.reduce([:]) {trans, curr in
 			var trans = trans
 			

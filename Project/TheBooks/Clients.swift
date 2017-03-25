@@ -38,20 +38,19 @@ private let keys: [Character] = [
 	"#"
 ]
 
-class Clients: UITableViewController {
+class Clients: UITableViewController, UISearchResultsUpdating {
 	let context = (UIApplication.shared.delegate as! AppDelegate).context
-	var clients: [Client] = []
 	var sections: [Character: [Client]] = [:]
+	var filteredSections: [Character: [Client]] = [:]
 	
-	lazy var onSelect: ((Client) -> ())? = {
-		self.performSegue(withIdentifier: "OpenViewClient", sender: $0)
-	}
+	let searchController = UISearchController(searchResultsController: nil)
+	
+	@IBOutlet weak var countLabel: UILabel!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		clients = Client.all(for: context)
-		sections = clients.reduce([:]) {trans, curr in
+		sections = Client.all(for: context).reduce([:]) {trans, curr in
 			var trans = trans
 			
 			if !trans.has(key: curr.key) {
@@ -62,19 +61,67 @@ class Clients: UITableViewController {
 			
 			return trans
 		}
+		filteredSections = sections
+		
+		updateCount()
+		
+		searchController.searchResultsUpdater = self
+		searchController.dimsBackgroundDuringPresentation = false
+		definesPresentationContext = true
+		tableView.tableHeaderView = searchController.searchBar
+	}
+	
+	lazy var onSelect: ((Client) -> ())? = {
+		self.performSegue(withIdentifier: "OpenViewClient", sender: $0)
+	}
+	
+	//MARK: Search controller methods
+	
+	public func updateSearchResults(for searchController: UISearchController) {
+		filterContent(for: searchController.searchBar.text!)
+	}
+	
+	func refreshFiltered(_ search: String? = nil, _ scope: String? = nil) {
+		guard let search = search, search.characters.count > 0 else {
+			filteredSections = sections
+			
+			return
+		}
+		
+		filteredSections = [:]
+		
+		for (key, array) in sections {
+			filteredSections[key] = array.filter {
+				$0.displayString.lowercased().contains(search.lowercased())
+			}
+		}
+	}
+	
+	func filterContent(for search: String, scope: String = "All") {
+		refreshFiltered(search)
+		
+		tableView.reloadData()
+	}
+	
+	//MARK: Footer view count
+	
+	func updateCount() {
+		let count = sections.reduce(0) { $0 + $1.value.count }
+		
+		countLabel.text = "\(count) Client" + (count != 1 ? "s" : "")
 	}
 	
 	
-	// Handle segue to show
+	//MARK: UITableViewControllerDelegate and DataSource methods
 	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		if let client = sections[keys[indexPath.section]]?[indexPath.row] {
+		if let client = filteredSections[keys[indexPath.section]]?[indexPath.row] {
 			onSelect?(client)
 		}
 	}
 	
 	override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-		return keys.map { String($0) }
+		return !searchController.isActive ? keys.map { String($0) } : nil
 	}
 	
 	override func numberOfSections(in tableView: UITableView) -> Int {
@@ -82,7 +129,7 @@ class Clients: UITableViewController {
 	}
 	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return sections[keys[section]]?.count ?? 0
+		return filteredSections[keys[section]]?.count ?? 0
 	}
 	
 	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -96,7 +143,7 @@ class Clients: UITableViewController {
 		
 		let section = indexPath.section
 		let row = indexPath.row
-		let client = sections[keys[section]]?[row]
+		let client = filteredSections[keys[section]]?[row]
 		
 		if let client = client, let label = cell.textLabel {
 			label.text = client.displayString
@@ -105,7 +152,7 @@ class Clients: UITableViewController {
 		return cell
 	}
 	
-	
+	//MARK: Cell handling helpers
 	
 	private func addClient(_ client: Client) {
 		let key = client.key
@@ -119,6 +166,19 @@ class Clients: UITableViewController {
 		sortSection(client)
 	}
 	
+	private func delClient(_ client: Client) {
+		delClient(client, from: client.key)
+	}
+	
+	private func delClient(_ client: Client, from section: Character) {
+		self.sections[section]!.remove(object: client)
+	}
+	
+	private func moveClient(_ client: Client, from section: Character) {
+		delClient(client, from: section)
+		addClient(client)
+	}
+	
 	private func sortSection(_ client: Client) {
 		let key = client.key
 		
@@ -130,6 +190,8 @@ class Clients: UITableViewController {
 		
 		tableView.reloadSections([index], with: .automatic)
 	}
+	
+	//MARK: Highlighting a cell, for the looks of it
 	
 	var needsFade: Client?
 	
@@ -147,14 +209,14 @@ class Clients: UITableViewController {
 		let key = client.key
 		
 		let section = keys.index(of: key)!
-		let row = self.sections[key]!.index(of: client)!
+		let row = filteredSections[key]!.index(of: client)!
 		
 		let indexPath = IndexPath(row: row, section: section)
 		
 		let scrollPosition: UITableViewScrollPosition
 		let visible = tableView.indexPathsForVisibleRows!
 		
-		if visible.contains(indexPath) {
+		if visible.count == 0 || visible.contains(indexPath) {
 			scrollPosition = .none
 		} else if visible.first!.section < section ||
 			visible.first!.section == section &&
@@ -168,6 +230,8 @@ class Clients: UITableViewController {
 		tableView.deselectRow(at: indexPath, animated: true)
 	}
 	
+	//MARK: Navigation
+	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if let viewClient = segue.destination as? ViewClient {
 			if let client = sender as? Client {
@@ -179,15 +243,15 @@ class Clients: UITableViewController {
 					let key = client.key
 					let isDeleted = client.isDeleted || client.managedObjectContext == nil
 					
-					if key != initialKey {
-						self.sections[initialKey]!.remove(object: client)
-						
-						if !isDeleted {
-							self.addClient(client)
-						}
-					} else if !isDeleted {
+					if isDeleted {
+						self.delClient(client, from: initialKey)
+					} else if key != initialKey {
+						self.moveClient(client, from: initialKey)
+					} else {
 						self.sortSection(client)
 					}
+					
+					self.refreshFiltered()
 					
 					self.tableView.beginUpdates()
 					
@@ -201,19 +265,19 @@ class Clients: UITableViewController {
 					
 					self.tableView.endUpdates()
 					
-					if !isDeleted {
-						self.needsFade = client
-					} else {
-						self.needsFade = nil
-					}
+					self.needsFade = isDeleted ? nil : client
 					
 					viewClient.client = client
+					
+					self.updateCount()
 				}
 			} else {
-				// No client, no creating a new one
+				// No client, so we're creating a new one
 				viewClient.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: viewClient, action: #selector(ViewClient.dismissSelf))
 				viewClient.onDone = {client in
 					self.addClient(client)
+					
+					self.refreshFiltered()
 					
 					self.tableView.beginUpdates()
 					
@@ -222,6 +286,8 @@ class Clients: UITableViewController {
 					self.tableView.endUpdates()
 					
 					self.needsFade = client
+					
+					self.updateCount()
 					
 					viewClient.dismissSelf()
 				}

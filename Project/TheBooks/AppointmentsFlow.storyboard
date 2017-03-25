@@ -12,7 +12,7 @@
         <!--Appointments-->
         <scene sceneID="WbQ-iB-bGc">
             <objects>
-                <tableViewController id="NWA-Vp-9jZ" customClass="Appointments" customModule="TheBooks" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="AppointmentsTable" id="NWA-Vp-9jZ" customClass="Appointments" customModule="TheBooks" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="52" sectionHeaderHeight="28" sectionFooterHeight="28" id="kvy-Og-A7g">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -83,15 +83,15 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p3U-JF-C5M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1818.4000000000001" y="64.31784107946028"/>
+            <point key="canvasLocation" x="1802" y="64"/>
         </scene>
-        <!--NewAppointment-->
+        <!--ViewAppointment-->
         <scene sceneID="9gK-Uh-V0E">
             <objects>
-                <viewControllerPlaceholder storyboardName="NewAppointment" id="8Tv-SP-foe" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="ViewAppointment" id="8Tv-SP-foe" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XzW-qc-urB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2624.8000000000002" y="63.868065967016499"/>
+            <point key="canvasLocation" x="2518" y="63"/>
         </scene>
         <!--Appointments-->
         <scene sceneID="Dl0-lp-la8">
