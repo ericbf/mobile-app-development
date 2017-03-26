@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		073D189C1E876DEE00890B7F /* DurationPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073D189B1E876DEE00890B7F /* DurationPicker.swift */; };
 		074761991E84BF80000EFFC2 /* Closure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074761961E84BF80000EFFC2 /* Closure.swift */; };
 		0747619A1E84BF80000EFFC2 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074761971E84BF80000EFFC2 /* Date.swift */; };
 		0747619B1E84BF80000EFFC2 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074761981E84BF80000EFFC2 /* Dictionary.swift */; };
@@ -15,6 +16,7 @@
 		077DB2C51E7DDF3800B05042 /* TheBooks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 077DB2C31E7DDF3800B05042 /* TheBooks.xcdatamodeld */; };
 		077DB2C71E7DDF3800B05042 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 077DB2C61E7DDF3800B05042 /* Assets.xcassets */; };
 		077DB2CA1E7DDF3800B05042 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 077DB2C81E7DDF3800B05042 /* LaunchScreen.storyboard */; };
+		079846361E8775CA003F3AC9 /* UIDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079846351E8775CA003F3AC9 /* UIDatePicker.swift */; };
 		07BC5F7D1E84B4000084EB20 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BC5F7C1E84B4000084EB20 /* Array.swift */; };
 		07BC5F7F1E84B4130084EB20 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BC5F7E1E84B4130084EB20 /* String.swift */; };
 		07D5C80A1E87302C00441DCB /* CellToggler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D5C8091E87302C00441DCB /* CellToggler.swift */; };
@@ -39,6 +41,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		073D189B1E876DEE00890B7F /* DurationPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationPicker.swift; sourceTree = "<group>"; };
 		074761961E84BF80000EFFC2 /* Closure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Closure.swift; sourceTree = "<group>"; };
 		074761971E84BF80000EFFC2 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		074761981E84BF80000EFFC2 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
@@ -49,6 +52,7 @@
 		077DB2C61E7DDF3800B05042 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		077DB2C91E7DDF3800B05042 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		077DB2CB1E7DDF3800B05042 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		079846351E8775CA003F3AC9 /* UIDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDatePicker.swift; sourceTree = "<group>"; };
 		07BC5F7C1E84B4000084EB20 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		07BC5F7E1E84B4130084EB20 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		07D5C8091E87302C00441DCB /* CellToggler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellToggler.swift; sourceTree = "<group>"; };
@@ -149,6 +153,7 @@
 			children = (
 				07E5B8401E7E390E009783C2 /* ViewAppointment.storyboard */,
 				07E5B83E1E7E38AB009783C2 /* ViewAppointment.swift */,
+				073D189B1E876DEE00890B7F /* DurationPicker.swift */,
 			);
 			name = ViewAppointment;
 			sourceTree = "<group>";
@@ -173,6 +178,7 @@
 				07E5B84A1E8075E6009783C2 /* Any.swift */,
 				07BC5F7C1E84B4000084EB20 /* Array.swift */,
 				07BC5F7E1E84B4130084EB20 /* String.swift */,
+				079846351E8775CA003F3AC9 /* UIDatePicker.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -342,6 +348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0747619A1E84BF80000EFFC2 /* Date.swift in Sources */,
+				073D189C1E876DEE00890B7F /* DurationPicker.swift in Sources */,
 				07D5C80A1E87302C00441DCB /* CellToggler.swift in Sources */,
 				07BC5F7D1E84B4000084EB20 /* Array.swift in Sources */,
 				07E5B81D1E7E1F62009783C2 /* Clients.swift in Sources */,
@@ -350,6 +357,7 @@
 				07E5B82A1E7E2E62009783C2 /* Appointment+CoreDataClass.swift in Sources */,
 				07E5B82E1E7E2E62009783C2 /* Client+CoreDataClass.swift in Sources */,
 				07E5B84B1E8075E6009783C2 /* Any.swift in Sources */,
+				079846361E8775CA003F3AC9 /* UIDatePicker.swift in Sources */,
 				07E5B8431E803B82009783C2 /* UIViewController.swift in Sources */,
 				07E5B83F1E7E38AB009783C2 /* ViewAppointment.swift in Sources */,
 				07E5B8381E7E3310009783C2 /* ViewClient.swift in Sources */,

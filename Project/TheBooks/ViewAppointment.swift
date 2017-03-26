@@ -9,6 +9,10 @@
 import UIKit
 
 class ViewAppointment: UITableViewController {
+	let context = (UIApplication.shared.delegate as! AppDelegate).context
+	
+	var client: Client?
+	var appointment: Appointment?
 	var onDone: ((Appointment) -> ())!
 	
 	@IBOutlet weak var clientLabel: UILabel!
@@ -18,23 +22,72 @@ class ViewAppointment: UITableViewController {
 	@IBOutlet weak var datePickerCell: UITableViewCell!
 	
 	@IBOutlet weak var durationLabel: UILabel!
-	@IBOutlet weak var durationPicker: UIPickerView!
+	@IBOutlet weak var durationPicker: DurationPicker!
 	@IBOutlet weak var durationPickerCell: UITableViewCell!
-	
-	
-	
-	@IBAction func done() {
-		//TODO: Create the appointment
-		
-		// onDone()
-		
-		dismissSelf()
-	}
-	
+
 	let toggler = ToggleHelper([
 		IndexPath(row: 0, section: 1): IndexPath(row: 1, section: 1),
 		IndexPath(row: 2, section: 1): IndexPath(row: 3, section: 1)
 	])
+	
+	@IBAction func updateDateLabel() {
+		let formatter = DateFormatter()
+		
+		formatter.dateFormat = "E  MMM dd, h:mm a"
+		
+		dateLabel.text = formatter.string(from: datePicker.date)
+	}
+	
+	func updateDurationLabel() {
+		updateDurationLabel(durationPicker.selectedRow, durationPicker.selectedTitle)
+	}
+	
+	func updateDurationLabel(_ row: Int, _ title: String) {
+		durationLabel.text = title
+	}
+	
+	override func viewDidLoad() {
+		datePicker.clamp()
+		
+		updateDateLabel()
+		updateDurationLabel()
+		
+		durationPicker.onSelect = updateDurationLabel
+		
+		toggler.onExpanded = {expanded in
+			if expanded.row == 1 {
+				// Date picker
+				self.dateLabel.textColor = UIColor.red
+			} else {
+				// Duration picker
+				self.durationLabel.textColor = UIColor.red
+			}
+		}
+		
+		toggler.onMinimized = {minimized in
+			if minimized.row == 1 {
+				// Date picker
+				self.dateLabel.textColor = UIColor.black
+			} else {
+				// Duration picker
+				self.durationLabel.textColor = UIColor.black
+			}
+		}
+	}
+	
+	@IBAction func done() {
+		if appointment == nil {
+			appointment = Appointment.make(for: context)
+		}
+		
+		appointment!.client = client!
+		appointment!.start = datePicker.date
+		appointment!.duration = Int16(durationPicker.rows[durationPicker.selectedRow])
+		
+		try? context.save()
+		
+		onDone(appointment!)
+	}
 	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		let original = super.tableView(tableView, numberOfRowsInSection: section)
@@ -64,6 +117,9 @@ class ViewAppointment: UITableViewController {
 			
 			clients.onSelect = {client in
 				self.clientLabel.text = client.displayString
+				self.navigationItem.rightBarButtonItem!.isEnabled = true
+				
+				self.client = client
 				
 				clients.dismissSelf()
 			}

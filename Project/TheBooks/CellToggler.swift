@@ -11,14 +11,19 @@ import UIKit
 class ToggleHelper {
 	let toggles: [IndexPath: IndexPath]
 	
-	var expanded: IndexPath?
-	var minimized: [IndexPath] = []
-	
 	init(_ togglers: [IndexPath: IndexPath]) {
 		self.toggles = togglers
 	}
 	
+	/// Closure that takes the `IndexPath` of the cell being expanded.
+	var onExpanded: ((IndexPath) -> ())?
+	
+	/// Closure that takes the `IndexPath` of the cell being minimized.
+	var onMinimized: ((IndexPath) -> ())?
+	
 	var semaphore = 0
+	var expanded: IndexPath?
+	var minimized: [IndexPath] = []
 	
 	private func hiddenToggles(for section: Int) -> [IndexPath] {
 		return self.toggles
@@ -70,9 +75,15 @@ class ToggleHelper {
 	}
 	
 	func didSelect(rowAt indexPath: IndexPath, for tableView: UITableView) {
-		if let picker = toggles[mapFromTable(indexPath)] {
+		if let toggled = toggles[mapFromTable(indexPath)] {
 			semaphore += 1
 			tableView.deselectRow(at: indexPath, animated: true)
+			
+			if toggled != expanded {
+				onExpanded?(toggled)
+			} else if expanded != nil {
+				onMinimized?(expanded!)
+			}
 			
 			func runner(_ closure: @escaping () -> ()) -> () -> () {
 				return {
@@ -87,10 +98,10 @@ class ToggleHelper {
 			}
 			
 			func add() {
-				if picker != expanded && !minimized.contains(picker) {
-					minimized.append(picker)
+				if toggled != expanded && !minimized.contains(toggled) {
+					minimized.append(toggled)
 					
-					tableView.insertRows(at: [mapFromAbsolute(picker)], with: .none)
+					tableView.insertRows(at: [mapFromAbsolute(toggled)], with: .none)
 				}
 				
 				CATransaction.setCompletionBlock(runner(resize))
@@ -101,9 +112,9 @@ class ToggleHelper {
 					minimized.append(expanded!)
 				}
 				
-				if picker != expanded {
-					minimized.remove(object: picker)
-					expanded = picker
+				if toggled != expanded {
+					minimized.remove(object: toggled)
+					expanded = toggled
 				} else {
 					expanded = nil
 				}

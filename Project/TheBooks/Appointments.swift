@@ -28,7 +28,7 @@ class Appointments: UITableViewController {
 		sections = appointments.reduce([:]) {trans, curr in
 			var trans = trans
 			
-			if trans.has(key: curr.key) {
+			if !trans.has(key: curr.key) {
 				trans[curr.key] = []
 			}
 			
@@ -57,5 +57,27 @@ class Appointments: UITableViewController {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AppointmentCell
 		
 		return cell
+	}
+	
+	func addAppointment(_ appointment: Appointment) {
+		let key = appointment.key
+		
+		if !sections.has(key: key) {
+			sections[key] = []
+		}
+		
+		sections[key]!.append(appointment)
+	}
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if let viewAppointment = segue.destination as? ViewAppointment {
+			viewAppointment.onDone = {appointment in
+				self.addAppointment(appointment)
+				
+				//TODO: All the stuff over here
+				
+				viewAppointment.dismissSelf()
+			}
+		}
 	}
 }

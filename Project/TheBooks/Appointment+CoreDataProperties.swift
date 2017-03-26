@@ -34,7 +34,6 @@ extension Appointment {
 		let formatter = DateFormatter()
 		
 		formatter.dateFormat = "EEE  MMM d"
-		formatter.timeStyle = .none
 		
 		return formatter.string(from: start)
 	}

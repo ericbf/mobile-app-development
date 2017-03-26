@@ -98,6 +98,9 @@
                                                     <date key="date" timeIntervalSinceReferenceDate="512121874.40144998">
                                                         <!--2017-03-25 08:04:34 +0000-->
                                                     </date>
+                                                    <connections>
+                                                        <action selector="updateDateLabel" destination="NPz-Cb-Pny" eventType="valueChanged" id="sWK-Ox-7wc"/>
+                                                    </connections>
                                                 </datePicker>
                                             </subviews>
                                             <constraints>
@@ -138,7 +141,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="215.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XIe-zg-OoR">
+                                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XIe-zg-OoR" customClass="DurationPicker" customModule="TheBooks" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="216"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="216" id="bax-t1-DVN"/>
