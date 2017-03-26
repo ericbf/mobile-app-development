@@ -22,6 +22,7 @@ class ViewAppointment: UITableViewController {
 	@IBOutlet weak var durationPickerCell: UITableViewCell!
 	
 	
+	
 	@IBAction func done() {
 		//TODO: Create the appointment
 		
@@ -30,93 +31,31 @@ class ViewAppointment: UITableViewController {
 		dismissSelf()
 	}
 	
-	let toggles = [
+	let toggler = ToggleHelper([
 		IndexPath(row: 0, section: 1): IndexPath(row: 1, section: 1),
-		IndexPath(row: 0, section: 2): IndexPath(row: 1, section: 2)
-	]
-	
-	func toggles(for section: Int) -> [IndexPath] {
-		return self.toggles
-			.filter {
-				$0.value.section == section &&
-					self.expanded != $0.value &&
-					!self.minimized.contains($0.value)
-			}
-			.map { $0.value }
-	}
-	
-	var expanded: IndexPath?
-	var minimized: [IndexPath] = []
+		IndexPath(row: 2, section: 1): IndexPath(row: 3, section: 1)
+	])
 	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		let offset = toggles(for: section).count
+		let original = super.tableView(tableView, numberOfRowsInSection: section)
 		
-		return super.tableView(tableView, numberOfRowsInSection: section) - offset
+		return toggler.numberOfRows(from: original, for: section)
 	}
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let offset = toggles(for: indexPath.section).filter { $0.row < indexPath.row }.count
-		let newPath = IndexPath(row: indexPath.row + offset, section: indexPath.section)
+		let indexPath = toggler.mapFromTable(indexPath)
 		
-		return super.tableView(tableView, cellForRowAt: newPath)
+		return super.tableView(tableView, cellForRowAt: indexPath)
 	}
 	
 	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		if minimized.contains(indexPath) {
-			return 0
-		}
+		let original = super.tableView(tableView, heightForRowAt: toggler.mapFromTable(indexPath))
 		
-		return super.tableView(tableView, heightForRowAt: indexPath)
+		return toggler.height(from: original, for: indexPath)
 	}
 	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		if let picker = toggles[indexPath] {
-			tableView.deselectRow(at: indexPath, animated: true)
-			
-			func runner(_ closure: @escaping () -> ()) -> () -> () {
-				return {
-					CATransaction.begin()
-					tableView.beginUpdates()
-					
-					closure()
-					
-					tableView.endUpdates()
-					CATransaction.commit()
-				}
-			}
-			
-			func add() {
-				if picker != expanded {
-					minimized.append(picker)
-					
-					tableView.insertRows(at: [picker], with: .none)
-				}
-				
-				CATransaction.setCompletionBlock(runner(resize))
-			}
-			
-			func resize() {
-				if expanded != nil {
-					minimized.append(expanded!)
-				}
-				
-				if picker != expanded {
-					minimized.remove(object: picker)
-					expanded = picker
-				} else {
-					expanded = nil
-				}
-				
-				CATransaction.setCompletionBlock(runner(remove))
-			}
-			
-			func remove() {
-				tableView.deleteRows(at: minimized, with: .none)
-				minimized.removeAll()
-			}
-			
-			runner(add)()
-		}
+		toggler.didSelect(rowAt: indexPath, for: tableView)
 	}
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

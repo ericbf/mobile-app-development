@@ -17,6 +17,7 @@
 		077DB2CA1E7DDF3800B05042 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 077DB2C81E7DDF3800B05042 /* LaunchScreen.storyboard */; };
 		07BC5F7D1E84B4000084EB20 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BC5F7C1E84B4000084EB20 /* Array.swift */; };
 		07BC5F7F1E84B4130084EB20 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BC5F7E1E84B4130084EB20 /* String.swift */; };
+		07D5C80A1E87302C00441DCB /* CellToggler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D5C8091E87302C00441DCB /* CellToggler.swift */; };
 		07E5B81B1E7E1C68009783C2 /* ClientsFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07E5B81A1E7E1C68009783C2 /* ClientsFlow.storyboard */; };
 		07E5B81D1E7E1F62009783C2 /* Clients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E5B81C1E7E1F62009783C2 /* Clients.swift */; };
 		07E5B82A1E7E2E62009783C2 /* Appointment+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E5B8221E7E2E62009783C2 /* Appointment+CoreDataClass.swift */; };
@@ -50,6 +51,7 @@
 		077DB2CB1E7DDF3800B05042 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07BC5F7C1E84B4000084EB20 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		07BC5F7E1E84B4130084EB20 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		07D5C8091E87302C00441DCB /* CellToggler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellToggler.swift; sourceTree = "<group>"; };
 		07E5B81A1E7E1C68009783C2 /* ClientsFlow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ClientsFlow.storyboard; sourceTree = "<group>"; };
 		07E5B81C1E7E1F62009783C2 /* Clients.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clients.swift; sourceTree = "<group>"; };
 		07E5B8221E7E2E62009783C2 /* Appointment+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Appointment+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 		07E5B8491E8075D8009783C2 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				07D5C8091E87302C00441DCB /* CellToggler.swift */,
 				07E5B8421E803B82009783C2 /* UIViewController.swift */,
 				074761961E84BF80000EFFC2 /* Closure.swift */,
 				074761971E84BF80000EFFC2 /* Date.swift */,
@@ -339,6 +342,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0747619A1E84BF80000EFFC2 /* Date.swift in Sources */,
+				07D5C80A1E87302C00441DCB /* CellToggler.swift in Sources */,
 				07BC5F7D1E84B4000084EB20 /* Array.swift in Sources */,
 				07E5B81D1E7E1F62009783C2 /* Clients.swift in Sources */,
 				077DB2C51E7DDF3800B05042 /* TheBooks.xcdatamodeld in Sources */,

@@ -107,12 +107,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                            <tableViewSection id="IvS-c5-MK4">
-                                <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="1Jb-SU-8Kd" detailTextLabel="dmh-Ak-fQB" style="IBUITableViewCellStyleValue1" id="EJV-tE-A9C">
-                                        <rect key="frame" x="0.0" y="411" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="375" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EJV-tE-A9C" id="dh8-Ra-tJF">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -136,13 +132,13 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="216" id="2fA-dS-5aE">
-                                        <rect key="frame" x="0.0" y="455" width="375" height="216"/>
+                                        <rect key="frame" x="0.0" y="419" width="375" height="216"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2fA-dS-5aE" id="NSJ-Ag-kco">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="215.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <pickerView clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XIe-zg-OoR">
+                                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XIe-zg-OoR">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="216"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="216" id="bax-t1-DVN"/>
