@@ -58,12 +58,12 @@ class Appointments: UITableViewController {
 		
 		let label = UILabel(frame: CGRect(x: 16, y: 5.5, width: 150, height: 18))
 		
-		let key = sorted[section]
+		let sectionData = sorted[section]
 		
 		label.font = UIFont.boldSystemFont(ofSize: 17)
-		label.text = key.key
+		label.text = sectionData.key
 		
-		if let appointment = key.value.first {
+		if let appointment = sectionData.value.first {
 			if Calendar.current.isDateInToday(appointment.start) {
 				label.textColor = UIColor.red
 			}
@@ -93,6 +93,15 @@ class Appointments: UITableViewController {
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AppointmentCell
+		let appointment = sorted[indexPath.section].value[indexPath.row]
+		let formatter = DateFormatter()
+		
+		formatter.dateFormat = "h:mm a"
+		
+		cell.startLabel.text = formatter.string(from: appointment.start)
+		cell.endLabel.text = "\(appointment.duration) mins"
+		cell.titleLabel.text = appointment.client.displayString
+		cell.subtitleLabel.text = appointment.client.phone
 		
 		return cell
 	}
