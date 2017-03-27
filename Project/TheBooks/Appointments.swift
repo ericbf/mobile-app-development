@@ -53,6 +53,44 @@ class Appointments: UITableViewController {
 		return sorted[section].key
 	}
 	
+	override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+		let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 18))
+		
+		let label = UILabel(frame: CGRect(x: 16, y: 5.5, width: 150, height: 18))
+		
+		let key = sorted[section]
+		
+		label.font = UIFont.boldSystemFont(ofSize: 17)
+		label.text = key.key
+		
+		if let appointment = key.value.first {
+			if Calendar.current.isDateInToday(appointment.start) {
+				label.textColor = UIColor.red
+			}
+		}
+		
+		view.backgroundColor = UIColor(white: 0xf7 / 0xff, alpha: 1)
+		view.addSubview(label)
+		
+		return view
+	}
+	
+	@IBAction func scrollToToday() {
+		var section = 0
+		
+		for (index, sectionData) in sorted.enumerated() {
+			if let date = sectionData.value.first?.start {
+				section = index
+				
+				if Calendar.current.isDateInToday(date) || date > Date() {
+					break
+				}
+			}
+		}
+		
+		tableView.scrollToRow(at: IndexPath(row: 0, section: section), at: .top, animated: true)
+	}
+	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AppointmentCell
 		

@@ -74,6 +74,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Appointments" id="J9q-St-Aww">
+                        <barButtonItem key="leftBarButtonItem" title="Today" id="HCZ-gV-Gp8">
+                            <connections>
+                                <action selector="scrollToToday" destination="NWA-Vp-9jZ" id="pVl-s8-uId"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="hZb-OX-W1C">
                             <connections>
                                 <segue destination="8Tv-SP-foe" kind="custom" customClass="PresentModallyWithNavigationItem" customModule="TheBooks" customModuleProvider="target" id="moT-pO-TZF"/>
