@@ -81,7 +81,9 @@ class ToggleHelper {
 			
 			if toggled != expanded {
 				onExpanded?(toggled)
-			} else if expanded != nil {
+			}
+			
+			if expanded != nil {
 				onMinimized?(expanded!)
 			}
 			
