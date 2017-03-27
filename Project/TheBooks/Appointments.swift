@@ -9,20 +9,23 @@
 import UIKit
 
 class Appointments: UITableViewController {
-	let context = (UIApplication.shared.delegate as! AppDelegate).context
-	var appointments: [Appointment] = []
-	var sections: [String: [Appointment]] = [:]
-	var sorted: [(key: String, value: [Appointment])] = []
+	private let context = (UIApplication.shared.delegate as! AppDelegate).context
+	private var sections: [String: [Appointment]] = [:]
+	private var sorted: [(key: String, value: [Appointment])] = []
 	
 	var client: Client?
+	
+	@IBOutlet weak private var countLabel: UILabel!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		appointments = Appointment.all(for: context)
+		let appointments: [Appointment]
 		
 		if let client = client {
-			appointments = appointments.filter {$0.client == client}
+			appointments = Appointment.all(for: context).filter {$0.client == client}
+		} else {
+			appointments = Appointment.all(for: context)
 		}
 		
 		sections = appointments.reduce([:]) {trans, curr in
@@ -40,19 +43,31 @@ class Appointments: UITableViewController {
 			return $0.value.first!.start < $1.value.first!.start
 		}
 		
+		updateCount()
+		
 		scrollToToday(false)
 	}
 	
+	private func updateCount() {
+		let count = sections.reduce(0) { $0 + $1.value.count }
+		
+		countLabel.text = "\(count) Appointment" + (count != 1 ? "s" : "")
+	}
+	
 	override func numberOfSections(in tableView: UITableView) -> Int {
-		return sorted.count
+		return sorted.count + 1
 	}
 	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return sorted[section].value.count
+		let notLast = section < numberOfSections(in: tableView) - 1
+		
+		return notLast ? sorted[section].value.count : 0
 	}
 	
 	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		return sorted[section].key
+		let notLast = section < numberOfSections(in: tableView) - 1
+		
+		return notLast ? sorted[section].key : nil
 	}
 	
 	override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -138,6 +153,8 @@ class Appointments: UITableViewController {
 					viewAppointment.navigationItem.rightBarButtonItem?.isEnabled = false
 					
 					//TODO: sort and stuff
+					
+					self.updateCount()
 				}
 			} else {
 				if let client = client {
@@ -149,6 +166,8 @@ class Appointments: UITableViewController {
 					self.addAppointment(appointment)
 					
 					//TODO: add to table, etc
+					
+					self.updateCount()
 					
 					viewAppointment.dismissSelf()
 				}

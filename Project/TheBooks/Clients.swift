@@ -123,17 +123,21 @@ class Clients: UITableViewController, UISearchResultsUpdating {
 	}
 	
 	override func numberOfSections(in tableView: UITableView) -> Int {
-		return keys.count
+		return keys.count + 1
 	}
 	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return filteredSections[keys[section]]?.count ?? 0
+		let notLast = section < numberOfSections(in: tableView) - 1
+		
+		return notLast ? filteredSections[keys[section]]?.count ?? 0 : 0
 	}
 	
 	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		let notLast = section < numberOfSections(in: tableView) - 1
+		
 		let rows = self.tableView(tableView, numberOfRowsInSection: section)
 		
-		return rows > 0 ? String(keys[section]) : nil
+		return notLast && rows > 0 ? String(keys[section]) : nil
 	}
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

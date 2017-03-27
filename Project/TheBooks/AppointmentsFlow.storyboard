@@ -21,6 +21,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="L7j-xZ-z21">
+                            <rect key="frame" x="0.0" y="80" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Count Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z9c-gd-d95">
+                                    <rect key="frame" x="136" y="10.5" width="103" height="23"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                    <color key="textColor" red="0.31372549020000001" green="0.31372549020000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="z9c-gd-d95" firstAttribute="centerY" secondItem="L7j-xZ-z21" secondAttribute="centerY" id="36K-Zc-1Li"/>
+                                <constraint firstItem="z9c-gd-d95" firstAttribute="centerX" secondItem="L7j-xZ-z21" secondAttribute="centerX" id="RLP-AT-JFz"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="52" id="HBH-m5-9in" customClass="AppointmentCell" customModule="TheBooks" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="52"/>
@@ -106,6 +123,9 @@
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <outlet property="countLabel" destination="z9c-gd-d95" id="JwR-R8-uZg"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p3U-JF-C5M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
