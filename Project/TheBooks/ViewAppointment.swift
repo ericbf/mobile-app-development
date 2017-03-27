@@ -11,7 +11,12 @@ import UIKit
 class ViewAppointment: UITableViewController {
 	let context = (UIApplication.shared.delegate as! AppDelegate).context
 	
-	var client: Client?
+	var client: Client? {
+		didSet {
+			clientLabel?.text = client?.displayString
+			navigationItem.rightBarButtonItem?.isEnabled = true
+		}
+	}
 	var appointment: Appointment?
 	var onDone: ((Appointment) -> ())!
 	
@@ -33,7 +38,7 @@ class ViewAppointment: UITableViewController {
 	@IBAction func updateDateLabel() {
 		let formatter = DateFormatter()
 		
-		formatter.dateFormat = "E  MMM dd, h:mm a"
+		formatter.dateFormat = "E  MMM d, h:mm a"
 		
 		dateLabel.text = formatter.string(from: datePicker.date)
 	}
@@ -47,6 +52,26 @@ class ViewAppointment: UITableViewController {
 	}
 	
 	override func viewDidLoad() {
+		if let appointment = appointment {
+			client = appointment.client
+			
+			datePicker.date = appointment.start
+			
+			if let row = durationPicker.rows.index(of: Int(appointment.duration)) {
+				durationPicker.selectedRow = row
+			}
+			
+			navigationItem.title = "View Appointment"
+			navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(ViewAppointment.done))
+			navigationItem.rightBarButtonItem?.isEnabled = false
+		} else {
+			navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(ViewAppointment.dismissSelf))
+		}
+		
+		if let client = client {
+			clientLabel.text = client.displayString
+		}
+		
 		datePicker.clamp()
 		
 		updateDateLabel()
@@ -116,9 +141,6 @@ class ViewAppointment: UITableViewController {
 			clients.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: clients, action: #selector(Clients.dismissSelf))
 			
 			clients.onSelect = {client in
-				self.clientLabel.text = client.displayString
-				self.navigationItem.rightBarButtonItem!.isEnabled = true
-				
 				self.client = client
 				
 				clients.dismissSelf()

@@ -17,7 +17,8 @@ class DurationPicker: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSource
 	]
 	
 	var selectedRow: Int {
-		return selectedRow(inComponent: 0)
+		get { return selectedRow(inComponent: 0) }
+		set { selectRow(newValue, inComponent: 0, animated: false) }
 	}
 	
 	var selectedTitle: String {

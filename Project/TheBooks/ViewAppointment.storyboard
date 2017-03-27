@@ -164,11 +164,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="New Appointment" id="7VQ-ZI-Esj">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="ode-0B-4Ge">
-                            <connections>
-                                <action selector="dismissSelf" destination="NPz-Cb-Pny" id="uir-ua-Gh5"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="done" id="jd9-4Q-xlf">
                             <connections>
                                 <action selector="done" destination="NPz-Cb-Pny" id="6hS-dd-OMf"/>

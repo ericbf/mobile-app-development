@@ -8,6 +8,8 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
+        <capability name="Segues with Peek and Pop" minToolsVersion="7.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -78,6 +80,10 @@
                                     <outlet property="startLabel" destination="eG1-w0-rcR" id="naR-Wy-LJ2"/>
                                     <outlet property="subtitleLabel" destination="7ZS-Ho-Yxt" id="kTH-oz-lq8"/>
                                     <outlet property="titleLabel" destination="AIB-Cq-Ivc" id="Fy6-Ay-nxc"/>
+                                    <segue destination="1UX-aW-YLQ" kind="show" id="aL7-KF-drp">
+                                        <segue key="commit" inheritsFrom="parent" id="ksR-g9-vxR"/>
+                                        <segue key="preview" inheritsFrom="commit" id="4zU-FL-pvr"/>
+                                    </segue>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -87,16 +93,18 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Appointments" id="J9q-St-Aww">
-                        <barButtonItem key="leftBarButtonItem" title="Today" id="HCZ-gV-Gp8">
-                            <connections>
-                                <action selector="scrollToToday" destination="NWA-Vp-9jZ" id="pVl-s8-uId"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="hZb-OX-W1C">
-                            <connections>
-                                <segue destination="8Tv-SP-foe" kind="custom" customClass="PresentModallyWithNavigationItem" customModule="TheBooks" customModuleProvider="target" id="moT-pO-TZF"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="hZb-OX-W1C">
+                                <connections>
+                                    <segue destination="8Tv-SP-foe" kind="custom" customClass="PresentModallyWithNavigationItem" customModule="TheBooks" customModuleProvider="target" id="moT-pO-TZF"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Today" id="HCZ-gV-Gp8">
+                                <connections>
+                                    <action selector="scrollToToday" destination="NWA-Vp-9jZ" id="pVl-s8-uId"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p3U-JF-C5M" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -109,7 +117,7 @@
                 <viewControllerPlaceholder storyboardName="ViewAppointment" id="8Tv-SP-foe" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XzW-qc-urB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2518" y="63"/>
+            <point key="canvasLocation" x="2498" y="-18"/>
         </scene>
         <!--Appointments-->
         <scene sceneID="Dl0-lp-la8">
@@ -133,8 +141,19 @@
             </objects>
             <point key="canvasLocation" x="879.20000000000005" y="64.31784107946028"/>
         </scene>
+        <!--ViewAppointment-->
+        <scene sceneID="aBd-qc-CWV">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ViewAppointment" id="1UX-aW-YLQ" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xOL-du-oUw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2498" y="158"/>
+        </scene>
     </scenes>
     <resources>
         <image name="appointments" width="23" height="23"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="aL7-KF-drp"/>
+    </inferredMetricsTieBreakers>
 </document>

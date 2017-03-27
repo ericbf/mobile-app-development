@@ -16,22 +16,7 @@ class ViewClient: UITableViewController {
 	@IBOutlet weak var phoneField: UITextField!
 	@IBOutlet weak var emailField: UITextField!
 	
-	var client: Client? {
-		didSet {
-			guard let client = client, firstNameField != nil else {
-				return
-			}
-			
-			initialFirstName = client.firstName
-			initialLastName = client.lastName
-			initialPhone = client.phone
-			initialEmail = client.email
-			
-			navigationItem.title = "View Client"
-			navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(ViewClient.done))
-			navigationItem.rightBarButtonItem?.isEnabled = false
-		}
-	}
+	var client: Client?
 	
 	var isMakingNewClient: Bool {
 		return client == nil
@@ -80,8 +65,16 @@ class ViewClient: UITableViewController {
 	
 	override func viewDidLoad() {
 		if let client = client {
-			// Manually trigger the didSet
-			self.client = client
+			initialFirstName = client.firstName
+			initialLastName = client.lastName
+			initialPhone = client.phone
+			initialEmail = client.email
+			
+			navigationItem.title = "View Client"
+			navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(ViewClient.done))
+			navigationItem.rightBarButtonItem?.isEnabled = false
+		} else {
+			navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(ViewClient.dismissSelf))
 		}
 	}
 	

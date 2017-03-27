@@ -39,6 +39,8 @@ class Appointments: UITableViewController {
 		sorted = self.sections.sorted {
 			return $0.value.first!.start < $1.value.first!.start
 		}
+		
+		scrollToToday(false)
 	}
 	
 	override func numberOfSections(in tableView: UITableView) -> Int {
@@ -75,8 +77,8 @@ class Appointments: UITableViewController {
 		return view
 	}
 	
-	@IBAction func scrollToToday() {
-		var section = 0
+	func scrollToToday(_ animated: Bool) {
+		var section: Int?
 		
 		for (index, sectionData) in sorted.enumerated() {
 			if let date = sectionData.value.first?.start {
@@ -88,7 +90,13 @@ class Appointments: UITableViewController {
 			}
 		}
 		
-		tableView.scrollToRow(at: IndexPath(row: 0, section: section), at: .top, animated: true)
+		if let section = section {
+			tableView.scrollToRow(at: IndexPath(row: 0, section: section), at: .top, animated: true)
+		}
+	}
+	
+	@IBAction func scrollToToday() {
+		scrollToToday(true)
 	}
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -118,12 +126,32 @@ class Appointments: UITableViewController {
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if let viewAppointment = segue.destination as? ViewAppointment {
-			viewAppointment.onDone = {appointment in
-				self.addAppointment(appointment)
+			if let cell = sender as? AppointmentCell {
+				guard let indexPath = tableView.indexPath(for: cell) else {
+					return
+				}
 				
-				//TODO: All the stuff over here
+				let appointment = sorted[indexPath.section].value[indexPath.row]
 				
-				viewAppointment.dismissSelf()
+				viewAppointment.appointment = appointment
+				viewAppointment.onDone = {appointment in
+					viewAppointment.navigationItem.rightBarButtonItem?.isEnabled = false
+					
+					//TODO: sort and stuff
+				}
+			} else {
+				if let client = client {
+					// If new appointment is openned from client's list, preselect that client.
+					viewAppointment.client = client
+				}
+				
+				viewAppointment.onDone = {appointment in
+					self.addAppointment(appointment)
+					
+					//TODO: add to table, etc
+					
+					viewAppointment.dismissSelf()
+				}
 			}
 		}
 	}

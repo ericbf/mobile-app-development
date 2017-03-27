@@ -71,9 +71,7 @@ class Clients: UITableViewController, UISearchResultsUpdating {
 		tableView.tableHeaderView = searchController.searchBar
 	}
 	
-	lazy var onSelect: ((Client) -> ())? = {
-		self.performSegue(withIdentifier: "OpenViewClient", sender: $0)
-	}
+	var onSelect: ((Client) -> ())?
 	
 	//MARK: Search controller methods
 	
@@ -232,9 +230,25 @@ class Clients: UITableViewController, UISearchResultsUpdating {
 	
 	//MARK: Navigation
 	
+	override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+		if sender as? UITableViewCell != nil && onSelect != nil {
+			return false
+		}
+		
+		return true
+	}
+	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if let viewClient = segue.destination as? ViewClient {
-			if let client = sender as? Client {
+			if let cell = sender as? UITableViewCell {
+				guard let indexPath = tableView.indexPath(for: cell) else {
+					return
+				}
+				
+				guard let client = filteredSections[keys[indexPath.section]]?[indexPath.row] else {
+					return
+				}
+				
 				// Passing a client in to view
 				let initialKey = client.key
 				
@@ -267,13 +281,12 @@ class Clients: UITableViewController, UISearchResultsUpdating {
 					
 					self.needsFade = isDeleted ? nil : client
 					
-					viewClient.client = client
+					viewClient.navigationItem.rightBarButtonItem?.isEnabled = false
 					
 					self.updateCount()
 				}
 			} else {
-				// No client, so we're creating a new one
-				viewClient.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: viewClient, action: #selector(ViewClient.dismissSelf))
+				// Sender is not a cell, so we're creating a new one
 				viewClient.onDone = {client in
 					self.addClient(client)
 					
