@@ -14,7 +14,8 @@ class ViewAppointment: UITableViewController {
 	var client: Client? {
 		didSet {
 			clientLabel?.text = client?.displayString
-			navigationItem.rightBarButtonItem?.isEnabled = true
+			
+			revalidate()
 		}
 	}
 	var appointment: Appointment?
@@ -35,12 +36,26 @@ class ViewAppointment: UITableViewController {
 		IndexPath(row: 2, section: 1): IndexPath(row: 3, section: 1)
 	])
 	
+	var initialClient: Client?
+	var initialStart: Date!
+	var initialDuration: Int!
+	
+	func revalidate() {
+		navigationItem.rightBarButtonItem?.isEnabled =
+			appointment == nil && client != nil ||
+			initialClient != client ||
+			initialStart != datePicker.date ||
+			initialDuration != durationPicker.selectedDuration
+	}
+	
 	@IBAction func updateDateLabel() {
 		let formatter = DateFormatter()
 		
 		formatter.dateFormat = "E  MMM d, h:mm a"
 		
 		dateLabel.text = formatter.string(from: datePicker.date)
+		
+		revalidate()
 	}
 	
 	func updateDurationLabel() {
@@ -49,34 +64,11 @@ class ViewAppointment: UITableViewController {
 	
 	func updateDurationLabel(_ row: Int, _ title: String) {
 		durationLabel.text = title
+		
+		revalidate()
 	}
 	
 	override func viewDidLoad() {
-		if let appointment = appointment {
-			client = appointment.client
-			
-			datePicker.date = appointment.start
-			
-			if let row = durationPicker.rows.index(of: Int(appointment.duration)) {
-				durationPicker.selectedRow = row
-			}
-			
-			navigationItem.title = "View Appointment"
-			navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(ViewAppointment.done))
-			navigationItem.rightBarButtonItem?.isEnabled = false
-		} else {
-			navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(ViewAppointment.dismissSelf))
-		}
-		
-		if let client = client {
-			clientLabel.text = client.displayString
-		}
-		
-		datePicker.clamp()
-		
-		updateDateLabel()
-		updateDurationLabel()
-		
 		durationPicker.onSelect = updateDurationLabel
 		
 		toggler.onExpanded = {expanded in
@@ -98,6 +90,35 @@ class ViewAppointment: UITableViewController {
 				self.durationLabel.textColor = UIColor.black
 			}
 		}
+		
+		if let appointment = appointment {
+			client = appointment.client
+			
+			datePicker.date = appointment.start
+			
+			if let row = durationPicker.rows.index(of: Int(appointment.duration)) {
+				durationPicker.selectedRow = row
+			}
+			
+			navigationItem.title = "View Appointment"
+			navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(ViewAppointment.done))
+			navigationItem.rightBarButtonItem?.isEnabled = false
+		} else {
+			datePicker.clamp()
+			navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(ViewAppointment.dismissSelf))
+		}
+		
+		initialClient = client
+		initialStart = datePicker.date
+		initialDuration = durationPicker.selectedDuration
+		revalidate()
+		
+		if let client = client {
+			clientLabel.text = client.displayString
+		}
+		
+		updateDateLabel()
+		updateDurationLabel()
 	}
 	
 	@IBAction func done() {
@@ -107,9 +128,14 @@ class ViewAppointment: UITableViewController {
 		
 		appointment!.client = client!
 		appointment!.start = datePicker.date
-		appointment!.duration = Int16(durationPicker.rows[durationPicker.selectedRow])
+		appointment!.duration = Int16(durationPicker.selectedDuration)
 		
 		try? context.save()
+		
+		initialClient = client
+		initialStart = datePicker.date
+		initialDuration = durationPicker.selectedDuration
+		revalidate()
 		
 		onDone(appointment!)
 	}
