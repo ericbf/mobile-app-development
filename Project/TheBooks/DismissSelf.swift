@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DismissSelf: UIStoryboardSegue {
+class dismiss: UIStoryboardSegue {
 	override func perform() {
 		self.source.dismiss(animated: true, completion: nil)
 	}

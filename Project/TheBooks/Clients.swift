@@ -40,8 +40,10 @@ private let keys: [Character] = [
 
 class Clients: UITableViewController, UISearchResultsUpdating {
 	let context = (UIApplication.shared.delegate as! AppDelegate).context
+	let center = NotificationCenter.default
+	
 	var sections: [Character: [Client]] = [:]
-	var filteredSections: [Character: [Client]] = [:]
+	var filtered: [Character: [Client]] = [:]
 	
 	let searchController = UISearchController(searchResultsController: nil)
 	
@@ -61,14 +63,18 @@ class Clients: UITableViewController, UISearchResultsUpdating {
 			
 			return trans
 		}
-		filteredSections = sections
 		
+		refreshFiltered()
 		updateCount()
 		
 		searchController.searchResultsUpdater = self
 		searchController.dimsBackgroundDuringPresentation = false
 		definesPresentationContext = true
 		tableView.tableHeaderView = searchController.searchBar
+		
+		// Register to be updated about changes to clients
+		center.addObserver(self, selector: #selector(clientCreated), name: CLIENT_CREATED_NOTIFICATION, object: nil)
+		center.addObserver(self, selector: #selector(clientUpdated), name: CLIENT_UPDATED_NOTIFICATION, object: nil)
 	}
 	
 	var onSelect: ((Client) -> ())?
@@ -79,17 +85,19 @@ class Clients: UITableViewController, UISearchResultsUpdating {
 		filterContent(for: searchController.searchBar.text!)
 	}
 	
+	//MARK: Manage filtered
+	
 	func refreshFiltered(_ search: String? = nil, _ scope: String? = nil) {
 		guard let search = search, search.characters.count > 0 else {
-			filteredSections = sections
+			filtered = sections
 			
 			return
 		}
 		
-		filteredSections = [:]
+		filtered = [:]
 		
 		for (key, array) in sections {
-			filteredSections[key] = array.filter {
+			filtered[key] = array.filter {
 				$0.displayString.lowercased().contains(search.lowercased())
 			}
 		}
@@ -110,10 +118,10 @@ class Clients: UITableViewController, UISearchResultsUpdating {
 	}
 	
 	
-	//MARK: UITableViewControllerDelegate and DataSource methods
+	//MARK: Table view delegate and data source
 	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		if let client = filteredSections[keys[indexPath.section]]?[indexPath.row] {
+		if let client = filtered[keys[indexPath.section]]?[indexPath.row] {
 			onSelect?(client)
 		}
 	}
@@ -129,7 +137,7 @@ class Clients: UITableViewController, UISearchResultsUpdating {
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		let notLast = section < numberOfSections(in: tableView) - 1
 		
-		return notLast ? filteredSections[keys[section]]?.count ?? 0 : 0
+		return notLast ? filtered[keys[section]]?.count ?? 0 : 0
 	}
 	
 	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -145,7 +153,7 @@ class Clients: UITableViewController, UISearchResultsUpdating {
 		
 		let section = indexPath.section
 		let row = indexPath.row
-		let client = filteredSections[keys[section]]?[row]
+		let client = filtered[keys[section]]?[row]
 		
 		if let client = client, let label = cell.textLabel {
 			label.text = client.displayString
@@ -160,40 +168,62 @@ class Clients: UITableViewController, UISearchResultsUpdating {
 		let key = client.key
 		
 		if !sections.has(key: key) {
-			sections[key] = []
+			sections[key] = [client]
+			
+			refreshFiltered()
+		} else {
+			sections[key]!.append(client)
+			
+			sortSection(key)
 		}
 		
-		sections[key]!.append(client)
+		let section = keys.index(of: key)!
 		
-		sortSection(client)
+		if let row = filtered[key]?.index(of: client) {
+			let indexPath = IndexPath(row: row, section: section)
+			
+			tableView.insertRows(at: [indexPath], with: .automatic)
+		}
 	}
 	
-	private func delClient(_ client: Client) {
-		delClient(client, from: client.key)
+	private func removeClient(_ client: Client, from key: Character) {
+		guard sections.has(key: key) else {
+			return
+		}
+		
+		sections[key]!.remove(object: client)
+		
+		let section = keys.index(of: key)!
+		let row = filtered[key]?.index(of: client)
+		
+		refreshFiltered()
+		
+		if let row = row {
+			let indexPath = IndexPath(row: row, section: section)
+			
+			tableView.deleteRows(at: [indexPath], with: .automatic)
+		}
 	}
 	
-	private func delClient(_ client: Client, from section: Character) {
-		self.sections[section]!.remove(object: client)
-	}
-	
-	private func moveClient(_ client: Client, from section: Character) {
-		delClient(client, from: section)
+	private func moveClient(_ client: Client, from key: Character) {
+		removeClient(client, from: key)
 		addClient(client)
 	}
 	
-	private func sortSection(_ client: Client) {
-		let key = client.key
-		
-		sections[key]!.sort { $0.sortString < $1.sortString }
+	private func sortSection(_ key: Character) {
+		sections[key]?.sort { $0.sortString < $1.sortString }
+		refreshFiltered()
 	}
 	
 	private func reloadSection(_ key: Character) {
-		let index = keys.index(of: key)!
+		guard let index = keys.index(of: key) else {
+			return
+		}
 		
 		tableView.reloadSections([index], with: .automatic)
 	}
 	
-	//MARK: Highlighting a cell, for the looks of it
+	//MARK: Highlighting a cell
 	
 	var needsFade: Client?
 	
@@ -203,112 +233,131 @@ class Clients: UITableViewController, UISearchResultsUpdating {
 		if let client = needsFade {
 			needsFade = nil
 			
-			fadeCell(for: client)
+			selectCell(for: client)
+			
+			delay(0.1) {
+				self.tableView.deselectRow(at: , animated: true)
+			}
 		}
 	}
 	
-	private func fadeCell(for client: Client) {
-		let key = client.key
-		
-		let section = keys.index(of: key)!
-		let row = filteredSections[key]!.index(of: client)!
+	private func selectCell(for client: Client) {
+		guard let section = keys.index(of: client.key),
+			  let row = filtered[client.key]!.index(of: client) else {
+			return
+		}
 		
 		let indexPath = IndexPath(row: row, section: section)
-		
 		let scrollPosition: UITableViewScrollPosition
 		let visible = tableView.indexPathsForVisibleRows!
 		
 		if visible.count == 0 || visible.contains(indexPath) {
 			scrollPosition = .none
-		} else if visible.first!.section < section ||
+		} else if visible.first!.section > section ||
 			visible.first!.section == section &&
-			visible.first!.row < row {
+			visible.first!.row > row {
 			scrollPosition = .top
 		} else {
 			scrollPosition = .bottom
 		}
 		
 		tableView.selectRow(at: indexPath, animated: false, scrollPosition: scrollPosition)
-		tableView.deselectRow(at: indexPath, animated: true)
 	}
 	
 	//MARK: Navigation
 	
 	override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
 		if sender as? UITableViewCell != nil && onSelect != nil {
+			// If there is an onSelect clause, don't automatically go to the view client view
 			return false
 		}
 		
 		return true
 	}
 	
+	var presented: ViewClient?
+	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if let viewClient = segue.destination as? ViewClient {
-			if let cell = sender as? UITableViewCell {
-				guard let indexPath = tableView.indexPath(for: cell) else {
-					return
-				}
-				
-				guard let client = filteredSections[keys[indexPath.section]]?[indexPath.row] else {
-					return
-				}
-				
-				// Passing a client in to view
-				let initialKey = client.key
-				
+			presented = viewClient
+			
+			func setup(with client: Client) {
 				viewClient.client = client
-				viewClient.onDone = {client in
-					let key = client.key
-					let isDeleted = client.isDeleted || client.managedObjectContext == nil
-					
-					if isDeleted {
-						self.delClient(client, from: initialKey)
-					} else if key != initialKey {
-						self.moveClient(client, from: initialKey)
-					} else {
-						self.sortSection(client)
-					}
-					
-					self.refreshFiltered()
-					
-					self.tableView.beginUpdates()
-					
-					if key != initialKey || isDeleted {
-						self.reloadSection(initialKey)
-					}
-					
-					if !isDeleted {
-						self.reloadSection(key)
-					}
-					
-					self.tableView.endUpdates()
-					
-					self.needsFade = isDeleted ? nil : client
-					
-					viewClient.navigationItem.rightBarButtonItem?.isEnabled = false
-					
-					self.updateCount()
-				}
-			} else {
-				// Sender is not a cell, so we're creating a new one
-				viewClient.onDone = {client in
-					self.addClient(client)
-					
-					self.refreshFiltered()
-					
-					self.tableView.beginUpdates()
-					
-					self.reloadSection(client.key)
-					
-					self.tableView.endUpdates()
-					
-					self.needsFade = client
-					
-					self.updateCount()
-					
-					viewClient.dismissSelf()
-				}
 			}
+			
+			if let cell = sender as? UITableViewCell {
+				// Segue was triggered from tapping a cell. User is viewing an
+				//     existing client. Pass that along please!
+				guard let indexPath = tableView.indexPath(for: cell),
+					  let client = filtered[keys[indexPath.section]]?[indexPath.row]else {
+					return
+				}
+				
+				setup(with: client)
+			} else if let client = sender as? Client {
+				// If segue was triggered with a client as sender, view that
+				//     client. It was probably after creating it!
+				setup(with: client)
+			}
+		}
+	}
+	
+	func clientUpdated(_ notification: Notification) {
+		guard let viewClient = notification.object as? ViewClient,
+			  let initialKey = viewClient.initialKey,
+			  let client = viewClient.client else {
+			// Required variables weren't set. ABORT!
+			return
+		}
+		
+		let isDeleted = client.isDeleted || client.managedObjectContext == nil
+		
+		tableView.beginUpdates()
+		
+		if isDeleted {
+			removeClient(client, from: initialKey)
+		} else if client.key != initialKey {
+			moveClient(client, from: initialKey)
+		} else {
+			sortSection(client.key)
+			reloadSection(client.key)
+		}
+		
+		tableView.endUpdates()
+		
+		if viewClient == presented {
+			needsFade = isDeleted ? nil : client
+		}
+		
+		updateCount()
+	}
+	
+	func clientCreated(_ notification: Notification) {
+		guard let viewClient = notification.object as? ViewClient,
+			  let client = viewClient.client else {
+			// Required variables weren't set. ABORT!
+			return
+		}
+		
+		addClient(client)
+		refreshFiltered()
+		reloadSection(client.key)
+		updateCount()
+		
+		if viewClient == presented {
+			// It was my child that was updated. Do navigation stuff!
+			
+			// After a client is created, switch to view right away. This posts
+			//    the View Client view underneath the modal, silently
+			performSegue(withIdentifier: "Show ViewClient", sender: client)
+			
+			// Dismiss the modal view to reveal the View Client view
+			viewClient.modalTransitionStyle = .crossDissolve
+			viewClient.dismiss(animated: true) {
+				self.needsFade = client
+			}
+		} else {
+			needsFade = client
 		}
 	}
 }

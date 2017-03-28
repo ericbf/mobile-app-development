@@ -16,6 +16,9 @@
 		077DB2C51E7DDF3800B05042 /* TheBooks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 077DB2C31E7DDF3800B05042 /* TheBooks.xcdatamodeld */; };
 		077DB2C71E7DDF3800B05042 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 077DB2C61E7DDF3800B05042 /* Assets.xcassets */; };
 		077DB2CA1E7DDF3800B05042 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 077DB2C81E7DDF3800B05042 /* LaunchScreen.storyboard */; };
+		07803FAA1E8A10F000A90199 /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07803FA91E8A10F000A90199 /* UINavigationController.swift */; };
+		07803FAD1E8A10FA00A90199 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07803FAB1E8A10FA00A90199 /* UIView.swift */; };
+		07803FAE1E8A10FA00A90199 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07803FAC1E8A10FA00A90199 /* UIViewController.swift */; };
 		079846361E8775CA003F3AC9 /* UIDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079846351E8775CA003F3AC9 /* UIDatePicker.swift */; };
 		07BC5F7D1E84B4000084EB20 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BC5F7C1E84B4000084EB20 /* Array.swift */; };
 		07BC5F7F1E84B4130084EB20 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BC5F7E1E84B4130084EB20 /* String.swift */; };
@@ -31,7 +34,7 @@
 		07E5B83C1E7E36C2009783C2 /* DismissSelf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E5B83B1E7E36C2009783C2 /* DismissSelf.swift */; };
 		07E5B83F1E7E38AB009783C2 /* ViewAppointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E5B83E1E7E38AB009783C2 /* ViewAppointment.swift */; };
 		07E5B8411E7E390E009783C2 /* ViewAppointment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07E5B8401E7E390E009783C2 /* ViewAppointment.storyboard */; };
-		07E5B8431E803B82009783C2 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E5B8421E803B82009783C2 /* UIViewController.swift */; };
+		07E5B8431E803B82009783C2 /* UIViewController+Sheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E5B8421E803B82009783C2 /* UIViewController+Sheet.swift */; };
 		07E5B8471E806EB2009783C2 /* PresentModallyWithNavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E5B8461E806EB2009783C2 /* PresentModallyWithNavigationItem.swift */; };
 		07E5B84B1E8075E6009783C2 /* Any.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E5B84A1E8075E6009783C2 /* Any.swift */; };
 		07EF3D1F1E7DE2BC00161A26 /* AppointmentsFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07EF3D1E1E7DE2BC00161A26 /* AppointmentsFlow.storyboard */; };
@@ -52,6 +55,9 @@
 		077DB2C61E7DDF3800B05042 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		077DB2C91E7DDF3800B05042 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		077DB2CB1E7DDF3800B05042 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		07803FA91E8A10F000A90199 /* UINavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
+		07803FAB1E8A10FA00A90199 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		07803FAC1E8A10FA00A90199 /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		079846351E8775CA003F3AC9 /* UIDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDatePicker.swift; sourceTree = "<group>"; };
 		07BC5F7C1E84B4000084EB20 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		07BC5F7E1E84B4130084EB20 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -62,16 +68,16 @@
 		07E5B8231E7E2E62009783C2 /* Appointment+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Appointment+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		07E5B8261E7E2E62009783C2 /* Client+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Client+CoreDataClass.swift"; sourceTree = "<group>"; };
 		07E5B8271E7E2E62009783C2 /* Client+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Client+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		07E5B8371E7E3310009783C2 /* ViewClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewClient.swift; sourceTree = "<group>"; };
+		07E5B8371E7E3310009783C2 /* ViewClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ViewClient.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07E5B8391E7E3364009783C2 /* ViewClient.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ViewClient.storyboard; sourceTree = "<group>"; };
-		07E5B83B1E7E36C2009783C2 /* DismissSelf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissSelf.swift; sourceTree = "<group>"; };
-		07E5B83E1E7E38AB009783C2 /* ViewAppointment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewAppointment.swift; sourceTree = "<group>"; };
+		07E5B83B1E7E36C2009783C2 /* DismissSelf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = DismissSelf.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		07E5B83E1E7E38AB009783C2 /* ViewAppointment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ViewAppointment.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07E5B8401E7E390E009783C2 /* ViewAppointment.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ViewAppointment.storyboard; sourceTree = "<group>"; };
-		07E5B8421E803B82009783C2 /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		07E5B8421E803B82009783C2 /* UIViewController+Sheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "UIViewController+Sheet.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07E5B8461E806EB2009783C2 /* PresentModallyWithNavigationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentModallyWithNavigationItem.swift; sourceTree = "<group>"; };
 		07E5B84A1E8075E6009783C2 /* Any.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Any.swift; sourceTree = "<group>"; };
 		07EF3D1E1E7DE2BC00161A26 /* AppointmentsFlow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AppointmentsFlow.storyboard; sourceTree = "<group>"; };
-		07EF3D201E7DE3FE00161A26 /* Appointments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Appointments.swift; sourceTree = "<group>"; };
+		07EF3D201E7DE3FE00161A26 /* Appointments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Appointments.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07EF3D221E7DE99700161A26 /* AppointmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppointmentCell.swift; sourceTree = "<group>"; };
 		097455DE45C24ED231FABBC0 /* Pods_TheBooks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TheBooks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		31794F729AF109C8F8606661 /* Pods-TheBooks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheBooks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TheBooks/Pods-TheBooks.debug.xcconfig"; sourceTree = "<group>"; };
@@ -171,7 +177,10 @@
 			isa = PBXGroup;
 			children = (
 				07D5C8091E87302C00441DCB /* CellToggler.swift */,
-				07E5B8421E803B82009783C2 /* UIViewController.swift */,
+				07E5B8421E803B82009783C2 /* UIViewController+Sheet.swift */,
+				07803FA91E8A10F000A90199 /* UINavigationController.swift */,
+				07803FAB1E8A10FA00A90199 /* UIView.swift */,
+				07803FAC1E8A10FA00A90199 /* UIViewController.swift */,
 				074761961E84BF80000EFFC2 /* Closure.swift */,
 				074761971E84BF80000EFFC2 /* Date.swift */,
 				074761981E84BF80000EFFC2 /* Dictionary.swift */,
@@ -356,9 +365,10 @@
 				07EF3D211E7DE3FE00161A26 /* Appointments.swift in Sources */,
 				07E5B82A1E7E2E62009783C2 /* Appointment+CoreDataClass.swift in Sources */,
 				07E5B82E1E7E2E62009783C2 /* Client+CoreDataClass.swift in Sources */,
+				07803FAA1E8A10F000A90199 /* UINavigationController.swift in Sources */,
 				07E5B84B1E8075E6009783C2 /* Any.swift in Sources */,
 				079846361E8775CA003F3AC9 /* UIDatePicker.swift in Sources */,
-				07E5B8431E803B82009783C2 /* UIViewController.swift in Sources */,
+				07E5B8431E803B82009783C2 /* UIViewController+Sheet.swift in Sources */,
 				07E5B83F1E7E38AB009783C2 /* ViewAppointment.swift in Sources */,
 				07E5B8381E7E3310009783C2 /* ViewClient.swift in Sources */,
 				07E5B82F1E7E2E62009783C2 /* Client+CoreDataProperties.swift in Sources */,
@@ -366,6 +376,8 @@
 				0747619B1E84BF80000EFFC2 /* Dictionary.swift in Sources */,
 				077DB2BD1E7DDF3800B05042 /* AppDelegate.swift in Sources */,
 				074761991E84BF80000EFFC2 /* Closure.swift in Sources */,
+				07803FAE1E8A10FA00A90199 /* UIViewController.swift in Sources */,
+				07803FAD1E8A10FA00A90199 /* UIView.swift in Sources */,
 				07E5B82B1E7E2E62009783C2 /* Appointment+CoreDataProperties.swift in Sources */,
 				07BC5F7F1E84B4130084EB20 /* String.swift in Sources */,
 				07EF3D231E7DE99700161A26 /* AppointmentCell.swift in Sources */,

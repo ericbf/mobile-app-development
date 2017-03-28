@@ -97,7 +97,7 @@
                                     <outlet property="startLabel" destination="eG1-w0-rcR" id="naR-Wy-LJ2"/>
                                     <outlet property="subtitleLabel" destination="7ZS-Ho-Yxt" id="kTH-oz-lq8"/>
                                     <outlet property="titleLabel" destination="AIB-Cq-Ivc" id="Fy6-Ay-nxc"/>
-                                    <segue destination="1UX-aW-YLQ" kind="show" id="aL7-KF-drp">
+                                    <segue destination="1UX-aW-YLQ" kind="show" identifier="Show ViewAppointment" id="aL7-KF-drp">
                                         <segue key="commit" inheritsFrom="parent" id="ksR-g9-vxR"/>
                                         <segue key="preview" inheritsFrom="commit" id="4zU-FL-pvr"/>
                                     </segue>

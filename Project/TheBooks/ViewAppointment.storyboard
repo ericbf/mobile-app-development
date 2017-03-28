@@ -157,6 +157,31 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection id="FhL-N7-Bvg">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="I6k-ny-2XM">
+                                        <rect key="frame" x="0.0" y="671" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="I6k-ny-2XM" id="Zt3-6F-r7W">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delete Appointment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0tL-EA-96V">
+                                                    <rect key="frame" x="15" y="11" width="352" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="0tL-EA-96V" firstAttribute="centerY" secondItem="Zt3-6F-r7W" secondAttribute="centerY" id="8ur-wh-LA7"/>
+                                                <constraint firstItem="0tL-EA-96V" firstAttribute="leading" secondItem="Zt3-6F-r7W" secondAttribute="leading" constant="15" id="Un4-0j-iYQ"/>
+                                                <constraint firstAttribute="trailing" secondItem="0tL-EA-96V" secondAttribute="trailing" constant="8" id="YV4-qc-tIY"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="NPz-Cb-Pny" id="hg6-fC-ryO"/>
@@ -176,6 +201,7 @@
                         <outlet property="dateLabel" destination="4Zk-qM-ohJ" id="bmI-2E-0t6"/>
                         <outlet property="datePicker" destination="ivm-g3-JT9" id="RUX-aY-Jos"/>
                         <outlet property="datePickerCell" destination="7Kl-ri-Cja" id="1qW-hR-grJ"/>
+                        <outlet property="deleteCell" destination="I6k-ny-2XM" id="GF7-IM-qHM"/>
                         <outlet property="durationLabel" destination="dmh-Ak-fQB" id="jgz-Ri-Lpv"/>
                         <outlet property="durationPicker" destination="XIe-zg-OoR" id="rXE-4Q-Z5l"/>
                         <outlet property="durationPickerCell" destination="2fA-dS-5aE" id="atj-Ze-27r"/>

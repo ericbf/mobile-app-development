@@ -8,9 +8,14 @@
 
 import UIKit
 
+public let APPOINTMENT_UPDATED_NOTIFICATION = Notification.Name("appointment updated"),
+	APPOINTMENT_CREATED_NOTIFICATION = Notification.Name("appointment created")
+
 class ViewAppointment: UITableViewController {
 	let context = (UIApplication.shared.delegate as! AppDelegate).context
+	let center = NotificationCenter.default
 	
+	var appointment: Appointment?
 	var client: Client? {
 		didSet {
 			clientLabel?.text = client?.displayString
@@ -18,8 +23,10 @@ class ViewAppointment: UITableViewController {
 			revalidate()
 		}
 	}
-	var appointment: Appointment?
-	var onDone: ((Appointment) -> ())!
+	
+	var isMakingNewAppointment: Bool {
+		return appointment == nil
+	}
 	
 	@IBOutlet weak var clientLabel: UILabel!
 	
@@ -31,14 +38,24 @@ class ViewAppointment: UITableViewController {
 	@IBOutlet weak var durationPicker: DurationPicker!
 	@IBOutlet weak var durationPickerCell: UITableViewCell!
 
+	@IBOutlet weak var deleteCell: UITableViewCell!
+	
 	let toggler = ToggleHelper([
 		IndexPath(row: 0, section: 1): IndexPath(row: 1, section: 1),
 		IndexPath(row: 2, section: 1): IndexPath(row: 3, section: 1)
 	])
 	
+	var initialKey: String?
 	var initialClient: Client?
 	var initialStart: Date!
 	var initialDuration: Int!
+	
+	func setInitials() {
+		initialKey = appointment?.key
+		initialClient = client
+		initialStart = datePicker.date
+		initialDuration = durationPicker.selectedDuration
+	}
 	
 	func revalidate() {
 		navigationItem.rightBarButtonItem?.isEnabled =
@@ -105,12 +122,10 @@ class ViewAppointment: UITableViewController {
 			navigationItem.rightBarButtonItem?.isEnabled = false
 		} else {
 			datePicker.clamp()
-			navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(ViewAppointment.dismissSelf))
+			navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismiss as () -> ()))
 		}
 		
-		initialClient = client
-		initialStart = datePicker.date
-		initialDuration = durationPicker.selectedDuration
+		setInitials()
 		revalidate()
 		
 		if let client = client {
@@ -121,23 +136,8 @@ class ViewAppointment: UITableViewController {
 		updateDurationLabel()
 	}
 	
-	@IBAction func done() {
-		if appointment == nil {
-			appointment = Appointment.make(for: context)
-		}
-		
-		appointment!.client = client!
-		appointment!.start = datePicker.date
-		appointment!.duration = Int16(durationPicker.selectedDuration)
-		
-		try? context.save()
-		
-		initialClient = client
-		initialStart = datePicker.date
-		initialDuration = durationPicker.selectedDuration
-		revalidate()
-		
-		onDone(appointment!)
+	override func numberOfSections(in tableView: UITableView) -> Int {
+		return isMakingNewAppointment ? 2 : super.numberOfSections(in: tableView)
 	}
 	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -160,16 +160,55 @@ class ViewAppointment: UITableViewController {
 	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		toggler.didSelect(rowAt: indexPath, for: tableView)
+		
+		if tableView.cellForRow(at: indexPath) == deleteCell {
+			self.tableView.deselectRow(at: indexPath, animated: true)
+			self.presentSheet(
+				("Cancel", .cancel, nil),
+				("Delete Appointment", .destructive, {_ in
+					self.context.delete(self.appointment!)
+					
+					try? self.context.save()
+					
+					// Post about the deletion to all listeners here
+					self.center.post(name: APPOINTMENT_UPDATED_NOTIFICATION, object: self)
+					
+					_ = self.navigationController?.popViewController(animated: true)
+				})
+			)
+		}
+	}
+	
+	@IBAction func done() {
+		let isUpdate = self.appointment != nil
+		let appointment = self.appointment ?? Appointment.make(for: context)
+		
+		appointment.client = client!
+		appointment.client.sort()
+		appointment.start = datePicker.date
+		appointment.duration = Int16(durationPicker.selectedDuration)
+		
+		try? context.save()
+		
+		self.appointment = appointment
+		
+		let name = isUpdate ? APPOINTMENT_UPDATED_NOTIFICATION : APPOINTMENT_CREATED_NOTIFICATION
+		
+		// Post about the change to all listeners here
+		center.post(name: name, object: self)
+		
+		setInitials()
+		revalidate()
 	}
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if let clients = segue.destination as? Clients {
-			clients.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: clients, action: #selector(Clients.dismissSelf))
+			clients.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: clients, action: #selector(dismiss as () -> ()))
 			
 			clients.onSelect = {client in
 				self.client = client
 				
-				clients.dismissSelf()
+				clients.dismiss()
 			}
 		}
 	}

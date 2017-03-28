@@ -10,7 +10,7 @@
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="appointments" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Appointment" inverseName="client" inverseEntity="Appointment" syncable="YES"/>
+        <relationship name="appointments" optional="YES" toMany="YES" deletionRule="Deny" ordered="YES" destinationEntity="Appointment" inverseName="client" inverseEntity="Appointment" syncable="YES"/>
     </entity>
     <elements>
         <element name="Appointment" positionX="-90" positionY="-81" width="128" height="88"/>
