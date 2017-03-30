@@ -12,11 +12,50 @@ import CoreData
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 	var window: UIWindow?
-
+	
+	private func presentAuth(withAnimation animated: Bool = false) {
+		struct auth {
+			static let storyboard = UIStoryboard(name: "Authentication", bundle: nil)
+			static var presenting = false
+		}
+		
+		if auth.presenting {
+			// No need to present it if already presenting it!
+			return
+		}
+		
+		guard let window = window,
+			  let root = window.rootViewController else {
+			// If we are unable to push the auth, stop the app right here.
+			fatalError()
+		}
+		
+		let authentication = auth.storyboard.instantiateInitialViewController() as! Authentication
+		
+		authentication.onAuthenticated = {
+			auth.presenting = false
+		}
+		
+		root.present(authentication, animated: animated, completion: nil)
+		auth.presenting = true
+	}
+	
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-		// Override point for customization after application launch.
+		// This will present when the app first loads. We put it in a delay
+		//    because we want to give the app time to initialize the root views
+		//    (we avoid warnings this way. Warnings are BAD).
+		delay {
+			self.presentAuth()
+		}
+		
 		return true
 	}
+	
+	func applicationWillResignActive(_ application: UIApplication) {
+		// This will present the auth each time the app loses focus.
+		presentAuth(withAnimation: true)
+	}
+	
 
 	func applicationWillTerminate(_ application: UIApplication) {
 		// Saves changes in the application's managed object context before the application terminates.

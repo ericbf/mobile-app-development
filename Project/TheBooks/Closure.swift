@@ -271,40 +271,36 @@ public func memoize<P: Equatable, R>(ignoring: [Int] = [], _ closure: @escaping 
 	var keys: [(P, AnyHashable)] = []
 	var i = 0
 	
-	var currentKey: String {
-		get {
-			return "$$m_id_\(i)"
-		}
+	func getKey() -> String {
+		return "$$m_id_\(i)"
 	}
 	
 	return {param in
-		var key: AnyHashable
+		let key: AnyHashable
 		
 		if ignoring.contains(0) {
-			key = currentKey
+			key = getKey()
 		} else if let param = param as? AnyHashable {
 			key = param
 		} else {
 			if let entry = keys.first(where: {$0.0 == param}) {
 				key = entry.1
 			} else {
-				key = currentKey
+				key = getKey()
 				i += 1
 				keys.append((param, key))
 			}
 		}
 		
-		if let returns = cache[key] {
-			return returns
-		}
-		
-		let returns = closure(param)
-		
-		cache[key] = returns
-		
-		if let promise = returns as? Promise<Any> {
-			promise.catch {_ in
-				cache.removeValue(forKey: key)
+		let returns = cache[key] ?? closure(param)
+
+		if !cache.has(key: key) {
+			cache[key] = returns
+			
+			if let promise = returns as? Promise<Any> {
+				promise.catch {_ in
+					cache.removeValue(forKey: key)
+				}
 			}
 		}
 		

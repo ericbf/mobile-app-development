@@ -226,8 +226,10 @@ class Appointments: UITableViewController {
 			
 			selectCell(for: appointment)
 			
-			delay(0.1) {
-				self.tableView.deselectRow(at: self.tableView.indexPathForSelectedRow!, animated: true)
+			if let indexPath = self.tableView.indexPathForSelectedRow {
+				delay(0.1) {
+					self.tableView.deselectRow(at: indexPath, animated: true)
+				}
 			}
 		}
 	}

@@ -23,6 +23,8 @@
 		07BC5F7D1E84B4000084EB20 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BC5F7C1E84B4000084EB20 /* Array.swift */; };
 		07BC5F7F1E84B4130084EB20 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BC5F7E1E84B4130084EB20 /* String.swift */; };
 		07D5C80A1E87302C00441DCB /* CellToggler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D5C8091E87302C00441DCB /* CellToggler.swift */; };
+		07D5D3931E8DACCE004CA438 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07D5D3921E8DACCE004CA438 /* Authentication.storyboard */; };
+		07D5D3951E8DACDB004CA438 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D5D3941E8DACDB004CA438 /* Authentication.swift */; };
 		07E5B81B1E7E1C68009783C2 /* ClientsFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07E5B81A1E7E1C68009783C2 /* ClientsFlow.storyboard */; };
 		07E5B81D1E7E1F62009783C2 /* Clients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E5B81C1E7E1F62009783C2 /* Clients.swift */; };
 		07E5B82A1E7E2E62009783C2 /* Appointment+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E5B8221E7E2E62009783C2 /* Appointment+CoreDataClass.swift */; };
@@ -61,7 +63,10 @@
 		079846351E8775CA003F3AC9 /* UIDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDatePicker.swift; sourceTree = "<group>"; };
 		07BC5F7C1E84B4000084EB20 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		07BC5F7E1E84B4130084EB20 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		07D27DE41E8DA89B00631462 /* SegDebug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegDebug.swift; sourceTree = "<group>"; };
 		07D5C8091E87302C00441DCB /* CellToggler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellToggler.swift; sourceTree = "<group>"; };
+		07D5D3921E8DACCE004CA438 /* Authentication.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
+		07D5D3941E8DACDB004CA438 /* Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		07E5B81A1E7E1C68009783C2 /* ClientsFlow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ClientsFlow.storyboard; sourceTree = "<group>"; };
 		07E5B81C1E7E1F62009783C2 /* Clients.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clients.swift; sourceTree = "<group>"; };
 		07E5B8221E7E2E62009783C2 /* Appointment+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Appointment+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -118,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				077DB2BC1E7DDF3800B05042 /* AppDelegate.swift */,
+				07D5D3911E8DAC79004CA438 /* Authentication */,
 				077DB2C01E7DDF3800B05042 /* Main.storyboard */,
 				07EF3D1C1E7DE29700161A26 /* Appointments */,
 				07EF3D1D1E7DE2A300161A26 /* Clients */,
@@ -131,6 +137,15 @@
 				07E5B8011E7DF469009783C2 /* CoreData */,
 			);
 			path = TheBooks;
+			sourceTree = "<group>";
+		};
+		07D5D3911E8DAC79004CA438 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				07D5D3921E8DACCE004CA438 /* Authentication.storyboard */,
+				07D5D3941E8DACDB004CA438 /* Authentication.swift */,
+			);
+			name = Authentication;
 			sourceTree = "<group>";
 		};
 		07E5B8011E7DF469009783C2 /* CoreData */ = {
@@ -188,6 +203,7 @@
 				07BC5F7C1E84B4000084EB20 /* Array.swift */,
 				07BC5F7E1E84B4130084EB20 /* String.swift */,
 				079846351E8775CA003F3AC9 /* UIDatePicker.swift */,
+				07D27DE41E8DA89B00631462 /* SegDebug.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -291,6 +307,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07D5D3931E8DACCE004CA438 /* Authentication.storyboard in Resources */,
 				07EF3D1F1E7DE2BC00161A26 /* AppointmentsFlow.storyboard in Resources */,
 				07E5B8411E7E390E009783C2 /* ViewAppointment.storyboard in Resources */,
 				077DB2CA1E7DDF3800B05042 /* LaunchScreen.storyboard in Resources */,
@@ -363,6 +380,7 @@
 				07E5B81D1E7E1F62009783C2 /* Clients.swift in Sources */,
 				077DB2C51E7DDF3800B05042 /* TheBooks.xcdatamodeld in Sources */,
 				07EF3D211E7DE3FE00161A26 /* Appointments.swift in Sources */,
+				07D5D3951E8DACDB004CA438 /* Authentication.swift in Sources */,
 				07E5B82A1E7E2E62009783C2 /* Appointment+CoreDataClass.swift in Sources */,
 				07E5B82E1E7E2E62009783C2 /* Client+CoreDataClass.swift in Sources */,
 				07803FAA1E8A10F000A90199 /* UINavigationController.swift in Sources */,

@@ -161,7 +161,7 @@ class ViewAppointment: UITableViewController {
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		toggler.didSelect(rowAt: indexPath, for: tableView)
 		
-		if tableView.cellForRow(at: indexPath) == deleteCell {
+		if tableView.cellForRow(at: indexPath)! == deleteCell {
 			self.tableView.deselectRow(at: indexPath, animated: true)
 			self.presentSheet(
 				("Cancel", .cancel, nil),

@@ -88,7 +88,7 @@ class ViewClient: UITableViewController {
 	@IBOutlet weak var deleteClientCell: UITableViewCell!
 	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		if tableView.cellForRow(at: indexPath) == deleteClientCell {
+		if tableView.cellForRow(at: indexPath)! == deleteClientCell {
 			self.tableView.deselectRow(at: indexPath, animated: true)
 			self.presentSheet(
 				("Cancel", .cancel, nil),
