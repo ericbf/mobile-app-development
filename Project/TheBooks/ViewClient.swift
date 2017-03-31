@@ -12,7 +12,7 @@ public let CLIENT_UPDATED_NOTIFICATION = Notification.Name("client updated"),
 	CLIENT_CREATED_NOTIFICATION = Notification.Name("client created")
 
 class ViewClient: UITableViewController {
-	let context = (UIApplication.shared.delegate as! AppDelegate).context
+	let context = AppDelegate.instance.context
 	let center = NotificationCenter.default
 	
 	@IBOutlet weak var firstNameField: UITextField!

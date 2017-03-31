@@ -60,15 +60,17 @@ class Authentication: NSObject, BKPasscodeViewControllerDelegate {
 	
 	private static let delegate = Authentication()
 	
-	class func getInstance() -> BKPasscodeViewController {
+	class func getInstance(changing: Bool = false) -> BKPasscodeViewController {
 		let controller = BKPasscodeViewController(nibName: nil, bundle: nil)
 		
 		controller.delegate = delegate
 		
 		if KeychainWrapper.standard.string(forKey: PASSCODE_KEY) == nil {
 			controller.type = BKPasscodeViewControllerNewPasscodeType
-		} else {
+		} else if !changing {
 			controller.type = BKPasscodeViewControllerCheckPasscodeType
+		} else {
+			controller.type = BKPasscodeViewControllerChangePasscodeType
 		}
 		
 		controller.passcodeStyle = BKPasscodeInputViewNumericPasscodeStyle

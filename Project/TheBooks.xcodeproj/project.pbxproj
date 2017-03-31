@@ -23,6 +23,7 @@
 		07BC5F7D1E84B4000084EB20 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BC5F7C1E84B4000084EB20 /* Array.swift */; };
 		07BC5F7F1E84B4130084EB20 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BC5F7E1E84B4130084EB20 /* String.swift */; };
 		07D0148A1E8E0C2B00C841BD /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D014891E8E0C2B00C841BD /* Authentication.swift */; };
+		07D0148C1E8E231F00C841BD /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D0148B1E8E231F00C841BD /* Main.swift */; };
 		07D5C80A1E87302C00441DCB /* CellToggler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D5C8091E87302C00441DCB /* CellToggler.swift */; };
 		07D5D3991E8DCA11004CA438 /* TabbableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D5D3981E8DCA11004CA438 /* TabbableTextField.swift */; };
 		07E5B81B1E7E1C68009783C2 /* ClientsFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07E5B81A1E7E1C68009783C2 /* ClientsFlow.storyboard */; };
@@ -63,6 +64,7 @@
 		07BC5F7C1E84B4000084EB20 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Array.swift; path = TheBooks/Array.swift; sourceTree = "<group>"; };
 		07BC5F7E1E84B4130084EB20 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = String.swift; path = TheBooks/String.swift; sourceTree = "<group>"; };
 		07D014891E8E0C2B00C841BD /* Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
+		07D0148B1E8E231F00C841BD /* Main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		07D5C8091E87302C00441DCB /* CellToggler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellToggler.swift; sourceTree = "<group>"; };
 		07D5D3981E8DCA11004CA438 /* TabbableTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabbableTextField.swift; sourceTree = "<group>"; };
 		07E5B81A1E7E1C68009783C2 /* ClientsFlow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ClientsFlow.storyboard; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				077DB2BC1E7DDF3800B05042 /* AppDelegate.swift */,
 				07D014891E8E0C2B00C841BD /* Authentication.swift */,
 				077DB2C01E7DDF3800B05042 /* Main.storyboard */,
+				07D0148B1E8E231F00C841BD /* Main.swift */,
 				07EF3D1C1E7DE29700161A26 /* Appointments */,
 				07EF3D1D1E7DE2A300161A26 /* Clients */,
 				07E5B83D1E7E387F009783C2 /* ViewAppointment */,
@@ -394,6 +397,7 @@
 				07E5B82B1E7E2E62009783C2 /* Appointment+CoreDataProperties.swift in Sources */,
 				07BC5F7F1E84B4130084EB20 /* String.swift in Sources */,
 				07EF3D231E7DE99700161A26 /* AppointmentCell.swift in Sources */,
+				07D0148C1E8E231F00C841BD /* Main.swift in Sources */,
 				07E5B8471E806EB2009783C2 /* PresentModallyWithNavigationItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

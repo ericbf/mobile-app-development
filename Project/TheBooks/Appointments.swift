@@ -9,7 +9,7 @@
 import UIKit
 
 class Appointments: UITableViewController {
-	private let context = (UIApplication.shared.delegate as! AppDelegate).context
+	private let context = AppDelegate.instance.context
 	private let center = NotificationCenter.default
 	
 	private var sections: [String: [Appointment]] = [:]

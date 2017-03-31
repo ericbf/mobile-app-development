@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="NPz-Cb-Pny">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="NPz-Cb-Pny">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Segues with Peek and Pop" minToolsVersion="7.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -52,7 +53,10 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="y4x-sv-d2a" kind="custom" customClass="PresentModallyWithNavigationItem" customModule="TheBooks" customModuleProvider="target" id="U6P-WW-vgg"/>
+                                            <segue destination="y4x-sv-d2a" kind="custom" customClass="PresentModallyWithNavigationItem" customModule="TheBooks" customModuleProvider="target" id="U6P-WW-vgg">
+                                                <segue key="commit" inheritsFrom="parent" id="9Jw-Yw-oL2"/>
+                                                <segue key="preview" inheritsFrom="commit" id="zam-w3-wNc"/>
+                                            </segue>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -212,4 +216,7 @@
             <point key="canvasLocation" x="2776.8000000000002" y="45.42728635682159"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="U6P-WW-vgg"/>
+    </inferredMetricsTieBreakers>
 </document>

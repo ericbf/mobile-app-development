@@ -110,7 +110,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Appointments" id="J9q-St-Aww">
-                        <barButtonItem key="leftBarButtonItem" systemItem="pause" id="ren-nJ-9Ua"/>
                         <rightBarButtonItems>
                             <barButtonItem systemItem="add" id="hZb-OX-W1C">
                                 <connections>

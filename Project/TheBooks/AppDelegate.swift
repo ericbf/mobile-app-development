@@ -10,15 +10,24 @@ import UIKit
 import CoreData
 import BKPasscodeView
 
-private let PASSCODE_KEY = "passcode_key"
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, BKPasscodeLockScreenManagerDelegate {
+	static var instance: AppDelegate {
+		return UIApplication.shared.delegate as! AppDelegate
+	}
+	
 	var window: UIWindow?
 	
-	//MARK: Authentication
+	//MARK: - Authentication
+	
+	private var mask: UIView?
 	
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+		application.applicationSupportsShakeToEdit = true
+		
+		window!.makeKeyAndVisible()
+		mask = UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateInitialViewController()?.view
+		window!.addSubview(mask!)
 		
 		BKPasscodeLockScreenManager.shared().delegate = self
 		BKPasscodeLockScreenManager.shared().showLockScreen(false)
@@ -31,29 +40,52 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BKPasscodeLockScreenManag
 		BKPasscodeLockScreenManager.shared().showLockScreen(true)
 	}
 	
-	func applicationWillEnterForeground(_ application: UIApplication) {
-		displaying?.startTouchIDAuthenticationIfPossible()
+	func applicationDidBecomeActive(_ application: UIApplication) {
+		if mask != nil {
+			mask!.removeFromSuperview()
+			mask = nil
+		}
+		
+		if displaying != displayedOn {
+			displayedOn = displaying
+			
+			displaying?.startTouchIDAuthenticationIfPossible()
+		}
+	}
+	
+	func lockScreenManagerBlindView(_ aManager: BKPasscodeLockScreenManager!) -> UIView! {
+		return window!.rootViewController!.view.snapshotView(afterScreenUpdates: false)
 	}
 	
 	func lockScreenManagerShouldShowLockScreen(_ aManager: BKPasscodeLockScreenManager!) -> Bool {
 		return true
 	}
 	
-	var displaying: BKPasscodeViewController?
+	var displaying: BKPasscodeViewController!
+	private var displayedOn: BKPasscodeViewController?
+	
+	private var changing = false
+	
+	static func changePass() {
+		instance.changing = true
+		BKPasscodeLockScreenManager.shared().showLockScreen(true)
+	}
 	
 	func lockScreenManagerPasscodeViewController(_ aManager: BKPasscodeLockScreenManager!) -> UIViewController! {
-		displaying = Authentication.getInstance()
+		// This construct allows changing to be enabled from anywhere for one time
+		displaying = Authentication.getInstance(changing: changing)
+		changing = false
 		
 		return displaying
 	}
 	
-	//MARK: Screen orientations
+	//MARK: - Screen orientations
 	
 	func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
 		return [.portrait, .portraitUpsideDown]
 	}
 
-	// MARK: - Core Data stack
+	//MARK: - Core Data stack
 
 	lazy var persistentContainer: NSPersistentContainer = {
 	    /*
@@ -88,7 +120,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BKPasscodeLockScreenManag
 		return self.persistentContainer.viewContext
 	}
 
-	// MARK: - Core Data Saving support
+	//MARK: - Core Data Saving support
 
 	func saveContext () {
 	    let context = persistentContainer.viewContext

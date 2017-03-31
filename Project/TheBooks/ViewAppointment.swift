@@ -12,7 +12,7 @@ public let APPOINTMENT_UPDATED_NOTIFICATION = Notification.Name("appointment upd
 	APPOINTMENT_CREATED_NOTIFICATION = Notification.Name("appointment created")
 
 class ViewAppointment: UITableViewController {
-	let context = (UIApplication.shared.delegate as! AppDelegate).context
+	let context = AppDelegate.instance.context
 	let center = NotificationCenter.default
 	
 	var appointment: Appointment?
