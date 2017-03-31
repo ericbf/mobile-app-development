@@ -266,7 +266,7 @@ class ViewClient: UITableViewController, CNContactPickerDelegate, CNContactViewC
 	}
 	
 	@IBAction func done() {
-		done()
+		done() {}
 	}
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
