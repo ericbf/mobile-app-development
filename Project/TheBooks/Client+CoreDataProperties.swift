@@ -17,6 +17,7 @@ extension Client {
 	@NSManaged public var phone: String
 	@NSManaged public var email: String
 	@NSManaged public var appointments: NSOrderedSet
+	@NSManaged public var contactID: String?
 	
     @nonobjc public class func myFetchRequest() -> NSFetchRequest<Client> {
         return NSFetchRequest<Client>(entityName: NAME);

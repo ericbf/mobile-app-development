@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import Contacts
+import ContactsUI
 
 public let CLIENT_UPDATED_NOTIFICATION = Notification.Name("client updated"),
 	CLIENT_CREATED_NOTIFICATION = Notification.Name("client created")
 
-class ViewClient: UITableViewController {
+class ViewClient: UITableViewController, CNContactPickerDelegate, CNContactViewControllerDelegate {
 	let context = AppDelegate.instance.context
 	let center = NotificationCenter.default
 	
@@ -72,7 +74,7 @@ class ViewClient: UITableViewController {
 	override func viewDidLoad() {
 		if client != nil {
 			navigationItem.title = "View Client"
-			navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(ViewClient.done))
+			navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(done as () -> ()))
 		} else {
 			navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismiss as () -> ()))
 		}
@@ -82,13 +84,73 @@ class ViewClient: UITableViewController {
 	}
 	
 	override func numberOfSections(in tableView: UITableView) -> Int {
-		return isMakingNewClient ? 2 : super.numberOfSections(in: tableView)
+		return isMakingNewClient ? 3 : super.numberOfSections(in: tableView)
 	}
 	
-	@IBOutlet weak var deleteClientCell: UITableViewCell!
+	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		if section == 2 {
+			return 1
+		}
+		
+		return super.tableView(tableView, numberOfRowsInSection: section)
+	}
+	
+	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cell: UITableViewCell
+		
+		if indexPath.section == 2 {
+			let actualRow: Int
+			
+			if client?.contactID != nil {
+				actualRow = 2
+			} else if client != nil {
+				actualRow = 1
+			} else {
+				actualRow = 0
+			}
+			
+			let newPath = IndexPath(row: actualRow, section: 2)
+			
+			cell = super.tableView(tableView, cellForRowAt: newPath)
+		} else {
+			cell = super.tableView(tableView, cellForRowAt: indexPath)
+		}
+		
+		return cell
+	}
+	
+	@IBOutlet weak var importFromContacts: UITableViewCell!
+	@IBOutlet weak var linkToContact: UITableViewCell!
+	@IBOutlet weak var viewContactCard: UITableViewCell!
+	@IBOutlet weak var deleteClient: UITableViewCell!
 	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		if tableView.cellForRow(at: indexPath)! == deleteClientCell {
+		let cell = tableView.cellForRow(at: indexPath)
+		
+		if cell == importFromContacts || cell == linkToContact {
+			// Pull up contact picker
+			let picker = CNContactPickerViewController()
+			
+			picker.delegate = self
+			
+			present(picker, animated: true, completion: nil)
+		} else if cell == viewContactCard {
+			// Present the contact card
+			do {
+				let contact = try CNContactStore().unifiedContact(withIdentifier: client!.contactID!, keysToFetch: [CNContactViewController.descriptorForRequiredKeys()])
+				let viewer = CNContactViewController(for: contact)
+				
+				viewer.delegate = self
+				
+				self.navigationController?.pushViewController(viewer, animated: true)
+			} catch {
+				alert(title: "Contact Missing!", message: "The linked contact for this client was not found. Please link it again!")
+				
+				client!.contactID = nil
+				tableView.reloadRows(at: [IndexPath(row: 0, section: 3)], with: .automatic)
+			}
+		} else if cell == deleteClient {
+			// Deleting the client
 			self.tableView.deselectRow(at: indexPath, animated: true)
 			self.presentSheet(
 				("Cancel", .cancel, nil),
@@ -110,6 +172,49 @@ class ViewClient: UITableViewController {
 		}
 	}
 	
+	override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+		let cell = tableView.cellForRow(at: indexPath)
+		
+		if cell == viewContactCard {
+			prompt(title: "Options", buttons: [("Unlink Contact", .default), ("Reset to Contact", .default), ("Cancel", .cancel)]) {title in
+				if title == "Unlink Contact" {
+					self.client!.contactID = nil
+					self.tableView.reloadRows(at: [IndexPath(row: 0, section: 3)], with: .automatic)
+				} else if title == "Reset to Contact" {
+					do {
+						let contact = try CNContactStore().unifiedContact(withIdentifier: self.client!.contactID!, keysToFetch: [CNContactViewController.descriptorForRequiredKeys()])
+						
+						self.resetToContact(for: contact)
+					} catch {
+						self.alert(title: "Contact Missing!", message: "The linked contact for this client was not found. Please link it again!")
+						
+						self.client!.contactID = nil
+						tableView.reloadRows(at: [IndexPath(row: 0, section: 3)], with: .automatic)
+					}
+				}
+			}
+		}
+	}
+	
+	//MARK: Contact picker/viewer delegate
+	
+	func resetToContact(for contact: CNContact) {
+		firstName = contact.givenName
+		lastName = contact.familyName
+		phone = contact.phoneNumbers.first?.value.stringValue ?? ""
+		email = (contact.emailAddresses.first?.value ?? "") as String
+		
+		done {
+			self.client!.contactID = contact.identifier
+		}
+		
+		tableView.reloadRows(at: [IndexPath(row: 0, section: 3)], with: .automatic)
+	}
+	
+	func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
+		resetToContact(for: contact)
+	}
+	
 	func setInitials() {
 		initialKey = client?.key
 		initialFirstName = client?.firstName ?? ""
@@ -126,7 +231,7 @@ class ViewClient: UITableViewController {
 			email != initialEmail
 	}
 	
-	@IBAction func done() {
+	func done(withPresave: (() -> ())) {
 		view.endEditing(true)
 		
 		let isUpdate = self.client != nil
@@ -136,6 +241,8 @@ class ViewClient: UITableViewController {
 		client.lastName = lastName
 		client.phone = phone
 		client.email = email
+		
+		withPresave()
 		
 		try? context.save()
 		
@@ -148,6 +255,10 @@ class ViewClient: UITableViewController {
 		
 		setInitials()
 		revalidate()
+	}
+	
+	@IBAction func done() {
+		done()
 	}
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
