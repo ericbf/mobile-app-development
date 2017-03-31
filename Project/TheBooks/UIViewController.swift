@@ -9,6 +9,28 @@
 import UIKit
 
 public extension UIViewController {
+	@IBAction func dismiss() {
+		dismiss(animated: true, completion: nil)
+	}
+	
+	func presentSheet(_ buttons: (title: String, style: UIAlertActionStyle, handler: ((UIAlertAction) -> ())?)...) {
+		presentSheet(buttons)
+	}
+	
+	func presentSheet(_ buttons: [(title: String, style: UIAlertActionStyle, handler: ((UIAlertAction) -> ())?)]) {
+		let alert = UIAlertController(
+			title: nil,
+			message: nil,
+			preferredStyle: .actionSheet
+		)
+		
+		for button in buttons {
+			alert.addAction(UIAlertAction(title: button.title, style: button.style, handler: button.handler))
+		}
+		
+		present(alert, animated: true, completion:nil)
+	}
+	
 	/**
 	Go to the view controller with the passed id, or the initial view controller if no id was passed, from another storyboard.
 	

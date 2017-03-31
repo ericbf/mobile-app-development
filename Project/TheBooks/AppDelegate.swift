@@ -8,59 +8,46 @@
 
 import UIKit
 import CoreData
+import BKPasscodeView
+
+private let PASSCODE_KEY = "passcode_key"
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, BKPasscodeLockScreenManagerDelegate {
 	var window: UIWindow?
 	
-	private func presentAuth(withAnimation animated: Bool = false) {
-		struct auth {
-			static let storyboard = UIStoryboard(name: "Authentication", bundle: nil)
-			static var presenting = false
-		}
-		
-		if auth.presenting {
-			// No need to present it if already presenting it!
-			return
-		}
-		
-		guard let window = window,
-			  let root = window.rootViewController else {
-			// If we are unable to push the auth, stop the app right here.
-			fatalError()
-		}
-		
-		let authentication = auth.storyboard.instantiateInitialViewController() as! Authentication
-		
-		authentication.onAuthenticated = {
-			auth.presenting = false
-		}
-		
-		root.present(authentication, animated: animated, completion: nil)
-		auth.presenting = true
-	}
+	//MARK: Authentication
 	
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-		// This will present when the app first loads. We put it in a delay
-		//    because we want to give the app time to initialize the root views
-		//    (we avoid warnings this way. Warnings are BAD).
-		delay {
-			self.presentAuth()
-		}
+		
+		BKPasscodeLockScreenManager.shared().delegate = self
+		BKPasscodeLockScreenManager.shared().showLockScreen(false)
 		
 		return true
 	}
 	
 	func applicationWillResignActive(_ application: UIApplication) {
 		// This will present the auth each time the app loses focus.
-		presentAuth(withAnimation: true)
+		BKPasscodeLockScreenManager.shared().showLockScreen(true)
 	}
 	
-
-	func applicationWillTerminate(_ application: UIApplication) {
-		// Saves changes in the application's managed object context before the application terminates.
-		self.saveContext()
+	func applicationWillEnterForeground(_ application: UIApplication) {
+		displaying?.startTouchIDAuthenticationIfPossible()
 	}
+	
+	func lockScreenManagerShouldShowLockScreen(_ aManager: BKPasscodeLockScreenManager!) -> Bool {
+		return true
+	}
+	
+	var displaying: BKPasscodeViewController?
+	
+	func lockScreenManagerPasscodeViewController(_ aManager: BKPasscodeLockScreenManager!) -> UIViewController! {
+		displaying = Authentication.getInstance()
+		
+		return displaying
+	}
+	
+	//MARK: Screen orientations
 	
 	func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
 		return [.portrait, .portraitUpsideDown]
