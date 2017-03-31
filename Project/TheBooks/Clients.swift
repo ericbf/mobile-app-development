@@ -78,6 +78,7 @@ class Clients: UITableViewController, UISearchResultsUpdating {
 	}
 	
 	var onSelect: ((Client) -> ())?
+	var onCreated: ((Client) -> ())?
 	
 	//MARK: Search controller methods
 	
@@ -349,16 +350,21 @@ class Clients: UITableViewController, UISearchResultsUpdating {
 		if viewClient == presented {
 			// It was my child that was updated. Do navigation stuff!
 			
-			// After a client is created, switch to view right away. This posts
-			//    the View Client view underneath the modal, silently
-			performSegue(withIdentifier: "Show ViewClient", sender: client)
-			
-			// Dismiss the modal view to reveal the View Client view
-			viewClient.modalTransitionStyle = .crossDissolve
-			viewClient.dismiss(animated: true) {
-				self.needsFade = client
+			if let onCreated = onCreated {
+				onCreated(client)
+			} else {
+				// Only do this if the onCreated was not overriden
+				// After a client is created, switch to view right away. This posts
+				//    the View Client view underneath the modal, silently
+				performSegue(withIdentifier: "Show ViewClient", sender: client)
+				
+				// Dismiss the modal view to reveal the View Client view
+				viewClient.modalTransitionStyle = .crossDissolve
+				viewClient.dismiss(animated: true) {
+					self.needsFade = client
+				}
 			}
-		} else {
+			
 			needsFade = client
 		}
 	}

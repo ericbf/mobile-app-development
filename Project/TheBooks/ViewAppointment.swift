@@ -221,6 +221,13 @@ class ViewAppointment: UITableViewController {
 				
 				clients.dismiss()
 			}
+			clients.onCreated = {client in
+				self.client = client
+				
+				clients.presentedViewController?.dismiss(animated: true) {
+					clients.dismiss(animated: true, completion: nil)
+				}
+			}
 		} else if let viewClient = segue.destination as? ViewClient {
 			viewClient.client = client
 		}
