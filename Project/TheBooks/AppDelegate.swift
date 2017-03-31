@@ -11,10 +11,12 @@ import CoreData
 import BKPasscodeView
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, BKPasscodeLockScreenManagerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, BKPasscodeLockScreenManagerFixedDelegate {
 	static var instance: AppDelegate {
 		return UIApplication.shared.delegate as! AppDelegate
 	}
+	
+	let manager = BKPasscodeLockScreenManagerFixed.sharedManager()!
 	
 	var window: UIWindow?
 	
@@ -29,15 +31,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BKPasscodeLockScreenManag
 		mask = UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateInitialViewController()?.view
 		window!.addSubview(mask!)
 		
-		BKPasscodeLockScreenManager.shared().delegate = self
-		BKPasscodeLockScreenManager.shared().showLockScreen(false)
+		manager.delegate = self
+		manager.showLockScreen(false)
 		
 		return true
 	}
 	
 	func applicationWillResignActive(_ application: UIApplication) {
 		// This will present the auth each time the app loses focus.
-		BKPasscodeLockScreenManager.shared().showLockScreen(true)
+		manager.showLockScreen(true)
 	}
 	
 	func applicationDidBecomeActive(_ application: UIApplication) {
@@ -53,11 +55,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BKPasscodeLockScreenManag
 		}
 	}
 	
-	func lockScreenManagerBlindView(_ aManager: BKPasscodeLockScreenManager!) -> UIView! {
+	func lockScreenManagerBlindView(_ aManager: BKPasscodeLockScreenManagerFixed!) -> UIView! {
 		return window!.rootViewController!.view.snapshotView(afterScreenUpdates: false)
 	}
 	
-	func lockScreenManagerShouldShowLockScreen(_ aManager: BKPasscodeLockScreenManager!) -> Bool {
+	func lockScreenManagerShouldShowLockScreen(_ aManager: BKPasscodeLockScreenManagerFixed!) -> Bool {
 		return true
 	}
 	
@@ -68,10 +70,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BKPasscodeLockScreenManag
 	
 	static func changePass() {
 		instance.changing = true
-		BKPasscodeLockScreenManager.shared().showLockScreen(true)
+		AppDelegate.instance.manager.showLockScreen(true)
 	}
 	
-	func lockScreenManagerPasscodeViewController(_ aManager: BKPasscodeLockScreenManager!) -> UIViewController! {
+	func lockScreenManagerPasscodeViewController(_ aManager: BKPasscodeLockScreenManagerFixed!) -> UIViewController! {
 		// This construct allows changing to be enabled from anywhere for one time
 		displaying = Authentication.getInstance(changing: changing)
 		changing = false

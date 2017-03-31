@@ -11,6 +11,7 @@
 		074761991E84BF80000EFFC2 /* Closure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074761961E84BF80000EFFC2 /* Closure.swift */; };
 		0747619A1E84BF80000EFFC2 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074761971E84BF80000EFFC2 /* Date.swift */; };
 		0747619B1E84BF80000EFFC2 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074761981E84BF80000EFFC2 /* Dictionary.swift */; };
+		0773A62D1E8EC81700E27CFB /* BKPasscodeLockScreenManagerFixed.m in Sources */ = {isa = PBXBuildFile; fileRef = 0773A62C1E8EC81700E27CFB /* BKPasscodeLockScreenManagerFixed.m */; };
 		077DB2BD1E7DDF3800B05042 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077DB2BC1E7DDF3800B05042 /* AppDelegate.swift */; };
 		077DB2C21E7DDF3800B05042 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 077DB2C01E7DDF3800B05042 /* Main.storyboard */; };
 		077DB2C51E7DDF3800B05042 /* TheBooks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 077DB2C31E7DDF3800B05042 /* TheBooks.xcdatamodeld */; };
@@ -50,6 +51,7 @@
 		074761961E84BF80000EFFC2 /* Closure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Closure.swift; path = TheBooks/Closure.swift; sourceTree = "<group>"; };
 		074761971E84BF80000EFFC2 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Date.swift; path = TheBooks/Date.swift; sourceTree = "<group>"; };
 		074761981E84BF80000EFFC2 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Dictionary.swift; path = TheBooks/Dictionary.swift; sourceTree = "<group>"; };
+		0773A62C1E8EC81700E27CFB /* BKPasscodeLockScreenManagerFixed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKPasscodeLockScreenManagerFixed.m; sourceTree = "<group>"; };
 		077DB2B91E7DDF3800B05042 /* TheBooks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheBooks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		077DB2BC1E7DDF3800B05042 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		077DB2C11E7DDF3800B05042 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -65,6 +67,8 @@
 		07BC5F7E1E84B4130084EB20 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = String.swift; path = TheBooks/String.swift; sourceTree = "<group>"; };
 		07D014891E8E0C2B00C841BD /* Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		07D0148B1E8E231F00C841BD /* Main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
+		07D0148D1E8EC7B300C841BD /* TheBooks-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TheBooks-Bridging-Header.h"; sourceTree = "<group>"; };
+		07D0148E1E8EC7B300C841BD /* BKPasscodeLockScreenManagerFixed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKPasscodeLockScreenManagerFixed.h; sourceTree = "<group>"; };
 		07D5C8091E87302C00441DCB /* CellToggler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellToggler.swift; sourceTree = "<group>"; };
 		07D5D3981E8DCA11004CA438 /* TabbableTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabbableTextField.swift; sourceTree = "<group>"; };
 		07E5B81A1E7E1C68009783C2 /* ClientsFlow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ClientsFlow.storyboard; sourceTree = "<group>"; };
@@ -203,6 +207,9 @@
 			children = (
 				07D5D3981E8DCA11004CA438 /* TabbableTextField.swift */,
 				07D5C8091E87302C00441DCB /* CellToggler.swift */,
+				07D0148E1E8EC7B300C841BD /* BKPasscodeLockScreenManagerFixed.h */,
+				0773A62C1E8EC81700E27CFB /* BKPasscodeLockScreenManagerFixed.m */,
+				07D0148D1E8EC7B300C841BD /* TheBooks-Bridging-Header.h */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -279,6 +286,7 @@
 					077DB2B81E7DDF3800B05042 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = U6BN3M2E92;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -387,6 +395,7 @@
 				079846361E8775CA003F3AC9 /* UIDatePicker.swift in Sources */,
 				07E5B83F1E7E38AB009783C2 /* ViewAppointment.swift in Sources */,
 				07E5B8381E7E3310009783C2 /* ViewClient.swift in Sources */,
+				0773A62D1E8EC81700E27CFB /* BKPasscodeLockScreenManagerFixed.m in Sources */,
 				07E5B82F1E7E2E62009783C2 /* Client+CoreDataProperties.swift in Sources */,
 				07E5B83C1E7E36C2009783C2 /* DismissSelf.swift in Sources */,
 				0747619B1E84BF80000EFFC2 /* Dictionary.swift in Sources */,
@@ -524,12 +533,16 @@
 			baseConfigurationReference = 31794F729AF109C8F8606661 /* Pods-TheBooks.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = U6BN3M2E92;
 				INFOPLIST_FILE = TheBooks/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.erkalicious.TheBooks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TheBooks/TheBooks-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -538,12 +551,15 @@
 			baseConfigurationReference = 6F703C6CAA4934DC6324CC15 /* Pods-TheBooks.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = U6BN3M2E92;
 				INFOPLIST_FILE = TheBooks/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.erkalicious.TheBooks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TheBooks/TheBooks-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
