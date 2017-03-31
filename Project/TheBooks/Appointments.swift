@@ -345,7 +345,7 @@ class Appointments: UITableViewController {
 			viewAppointment.dismiss(animated: true) {
 				self.needsFade = appointment
 			}
-		} else {
+			
 			needsFade = appointment
 		}
 	}

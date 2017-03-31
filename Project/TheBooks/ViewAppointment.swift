@@ -21,6 +21,10 @@ class ViewAppointment: UITableViewController {
 			clientLabel?.text = client?.displayString
 			
 			revalidate()
+			
+			if oldValue == nil && client != nil {
+				tableView.insertRows(at: [IndexPath(row: 1, section: 0)], with: .automatic)
+			}
 		}
 	}
 	
@@ -134,6 +138,8 @@ class ViewAppointment: UITableViewController {
 		
 		updateDateLabel()
 		updateDurationLabel()
+		
+		center.addObserver(self, selector: #selector(clientUpdated), name: CLIENT_UPDATED_NOTIFICATION, object: nil)
 	}
 	
 	override func numberOfSections(in tableView: UITableView) -> Int {
@@ -142,8 +148,13 @@ class ViewAppointment: UITableViewController {
 	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		let original = super.tableView(tableView, numberOfRowsInSection: section)
+		let adjusted = toggler.numberOfRows(from: original, for: section)
 		
-		return toggler.numberOfRows(from: original, for: section)
+		if section == 0 && client == nil {
+			return adjusted - 1
+		}
+		
+		return adjusted
 	}
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -210,6 +221,25 @@ class ViewAppointment: UITableViewController {
 				
 				clients.dismiss()
 			}
+			clients.onCreated = {client in
+				self.client = client
+				
+				clients.presentedViewController?.dismiss(animated: true) {
+					clients.dismiss(animated: true, completion: nil)
+				}
+			}
+		} else if let viewClient = segue.destination as? ViewClient {
+			viewClient.client = client
 		}
+	}
+	
+	func clientUpdated(_ notification: Notification) {
+		guard let viewClient = notification.object as? ViewClient,
+			  let client = viewClient.client else {
+			// Ruqired variables not set. ABORT!!
+			return
+		}
+		
+		clientLabel.text = client.displayString
 	}
 }
