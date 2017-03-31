@@ -147,7 +147,7 @@ class ViewClient: UITableViewController, CNContactPickerDelegate, CNContactViewC
 				alert(title: "Contact Missing!", message: "The linked contact for this client was not found. Please link it again!")
 				
 				client!.contactID = nil
-				tableView.reloadRows(at: [IndexPath(row: 0, section: 3)], with: .automatic)
+				tableView.reloadRows(at: [IndexPath(row: 0, section: 2)], with: .automatic)
 			}
 		} else if cell == deleteClient {
 			// Deleting the client
@@ -176,10 +176,10 @@ class ViewClient: UITableViewController, CNContactPickerDelegate, CNContactViewC
 		let cell = tableView.cellForRow(at: indexPath)
 		
 		if cell == viewContactCard {
-			prompt(title: "Options", buttons: [("Unlink Contact", .default), ("Reset to Contact", .default), ("Cancel", .cancel)]) {title in
+			prompt(title: "Options", buttons: [("Unlink Contact", .default), ("Reset to Contact", .destructive), ("Cancel", .cancel)]) {title in
 				if title == "Unlink Contact" {
 					self.client!.contactID = nil
-					self.tableView.reloadRows(at: [IndexPath(row: 0, section: 3)], with: .automatic)
+					self.tableView.reloadRows(at: [IndexPath(row: 0, section: 2)], with: .automatic)
 				} else if title == "Reset to Contact" {
 					do {
 						let contact = try CNContactStore().unifiedContact(withIdentifier: self.client!.contactID!, keysToFetch: [CNContactViewController.descriptorForRequiredKeys()])
@@ -189,7 +189,7 @@ class ViewClient: UITableViewController, CNContactPickerDelegate, CNContactViewC
 						self.alert(title: "Contact Missing!", message: "The linked contact for this client was not found. Please link it again!")
 						
 						self.client!.contactID = nil
-						tableView.reloadRows(at: [IndexPath(row: 0, section: 3)], with: .automatic)
+						tableView.reloadRows(at: [IndexPath(row: 0, section: 2)], with: .automatic)
 					}
 				}
 			}
@@ -204,11 +204,19 @@ class ViewClient: UITableViewController, CNContactPickerDelegate, CNContactViewC
 		phone = contact.phoneNumbers.first?.value.stringValue ?? ""
 		email = (contact.emailAddresses.first?.value ?? "") as String
 		
-		done {
-			self.client!.contactID = contact.identifier
-		}
+		let clientWasNil = client == nil
+		let contactIDWasNil = client?.contactID == nil
 		
-		tableView.reloadRows(at: [IndexPath(row: 0, section: 3)], with: .automatic)
+		delay {
+			self.done {
+				self.client!.contactID = contact.identifier
+			}
+			
+			if !clientWasNil &&
+				(self.client?.contactID == nil) != contactIDWasNil {
+				self.tableView.reloadRows(at: [IndexPath(row: 0, section: 2)], with: .automatic)
+			}
+		}
 	}
 	
 	func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
@@ -242,11 +250,11 @@ class ViewClient: UITableViewController, CNContactPickerDelegate, CNContactViewC
 		client.phone = phone
 		client.email = email
 		
+		self.client = client
+		
 		withPresave()
 		
 		try? context.save()
-		
-		self.client = client
 		
 		let name = isUpdate ? CLIENT_UPDATED_NOTIFICATION : CLIENT_CREATED_NOTIFICATION
 		
