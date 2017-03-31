@@ -1,4 +1,7 @@
 PODS:
+  - AFViewShaker (0.0.4)
+  - BKPasscodeView (0.1.3):
+    - AFViewShaker (~> 0.0)
   - PromiseKit (4.1.7):
     - PromiseKit/Foundation (= 4.1.7)
     - PromiseKit/QuartzCore (= 4.1.7)
@@ -10,13 +13,19 @@ PODS:
     - PromiseKit/CorePromise
   - PromiseKit/UIKit (4.1.7):
     - PromiseKit/CorePromise
+  - SwiftKeychainWrapper (3.0.1)
 
 DEPENDENCIES:
+  - BKPasscodeView (~> 0.1.2)
   - PromiseKit (~> 4.0)
+  - SwiftKeychainWrapper (~> 3.0)
 
 SPEC CHECKSUMS:
+  AFViewShaker: 4296c638c24a037e02727b40d89d8f178df3b3f4
+  BKPasscodeView: 5adfc6a3c3d2d1994ea632c503e2e513b4f46cf1
   PromiseKit: 779f2e41faf62d854e7593026ddbcb0bb5c5002d
+  SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
 
-PODFILE CHECKSUM: 82c06832b927543a13fad13cc8bf7afd61ff8b34
+PODFILE CHECKSUM: dcbeacab07d029b5dfb667b8090ff3abc45c5eb7
 
 COCOAPODS: 1.2.0

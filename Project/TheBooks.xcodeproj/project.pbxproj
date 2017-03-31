@@ -22,7 +22,10 @@
 		079846361E8775CA003F3AC9 /* UIDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079846351E8775CA003F3AC9 /* UIDatePicker.swift */; };
 		07BC5F7D1E84B4000084EB20 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BC5F7C1E84B4000084EB20 /* Array.swift */; };
 		07BC5F7F1E84B4130084EB20 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BC5F7E1E84B4130084EB20 /* String.swift */; };
+		07D0148A1E8E0C2B00C841BD /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D014891E8E0C2B00C841BD /* Authentication.swift */; };
+		07D0148C1E8E231F00C841BD /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D0148B1E8E231F00C841BD /* Main.swift */; };
 		07D5C80A1E87302C00441DCB /* CellToggler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D5C8091E87302C00441DCB /* CellToggler.swift */; };
+		07D5D3991E8DCA11004CA438 /* TabbableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D5D3981E8DCA11004CA438 /* TabbableTextField.swift */; };
 		07E5B81B1E7E1C68009783C2 /* ClientsFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07E5B81A1E7E1C68009783C2 /* ClientsFlow.storyboard */; };
 		07E5B81D1E7E1F62009783C2 /* Clients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E5B81C1E7E1F62009783C2 /* Clients.swift */; };
 		07E5B82A1E7E2E62009783C2 /* Appointment+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E5B8221E7E2E62009783C2 /* Appointment+CoreDataClass.swift */; };
@@ -34,7 +37,6 @@
 		07E5B83C1E7E36C2009783C2 /* DismissSelf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E5B83B1E7E36C2009783C2 /* DismissSelf.swift */; };
 		07E5B83F1E7E38AB009783C2 /* ViewAppointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E5B83E1E7E38AB009783C2 /* ViewAppointment.swift */; };
 		07E5B8411E7E390E009783C2 /* ViewAppointment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07E5B8401E7E390E009783C2 /* ViewAppointment.storyboard */; };
-		07E5B8431E803B82009783C2 /* UIViewController+Sheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E5B8421E803B82009783C2 /* UIViewController+Sheet.swift */; };
 		07E5B8471E806EB2009783C2 /* PresentModallyWithNavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E5B8461E806EB2009783C2 /* PresentModallyWithNavigationItem.swift */; };
 		07E5B84B1E8075E6009783C2 /* Any.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E5B84A1E8075E6009783C2 /* Any.swift */; };
 		07EF3D1F1E7DE2BC00161A26 /* AppointmentsFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07EF3D1E1E7DE2BC00161A26 /* AppointmentsFlow.storyboard */; };
@@ -45,9 +47,9 @@
 
 /* Begin PBXFileReference section */
 		073D189B1E876DEE00890B7F /* DurationPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationPicker.swift; sourceTree = "<group>"; };
-		074761961E84BF80000EFFC2 /* Closure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Closure.swift; sourceTree = "<group>"; };
-		074761971E84BF80000EFFC2 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
-		074761981E84BF80000EFFC2 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
+		074761961E84BF80000EFFC2 /* Closure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Closure.swift; path = TheBooks/Closure.swift; sourceTree = "<group>"; };
+		074761971E84BF80000EFFC2 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Date.swift; path = TheBooks/Date.swift; sourceTree = "<group>"; };
+		074761981E84BF80000EFFC2 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Dictionary.swift; path = TheBooks/Dictionary.swift; sourceTree = "<group>"; };
 		077DB2B91E7DDF3800B05042 /* TheBooks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheBooks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		077DB2BC1E7DDF3800B05042 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		077DB2C11E7DDF3800B05042 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -55,13 +57,16 @@
 		077DB2C61E7DDF3800B05042 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		077DB2C91E7DDF3800B05042 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		077DB2CB1E7DDF3800B05042 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		07803FA91E8A10F000A90199 /* UINavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
-		07803FAB1E8A10FA00A90199 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
-		07803FAC1E8A10FA00A90199 /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
-		079846351E8775CA003F3AC9 /* UIDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDatePicker.swift; sourceTree = "<group>"; };
-		07BC5F7C1E84B4000084EB20 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
-		07BC5F7E1E84B4130084EB20 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		07803FA91E8A10F000A90199 /* UINavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UINavigationController.swift; path = TheBooks/UINavigationController.swift; sourceTree = "<group>"; };
+		07803FAB1E8A10FA00A90199 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIView.swift; path = TheBooks/UIView.swift; sourceTree = "<group>"; };
+		07803FAC1E8A10FA00A90199 /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIViewController.swift; path = TheBooks/UIViewController.swift; sourceTree = "<group>"; };
+		079846351E8775CA003F3AC9 /* UIDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIDatePicker.swift; path = TheBooks/UIDatePicker.swift; sourceTree = "<group>"; };
+		07BC5F7C1E84B4000084EB20 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Array.swift; path = TheBooks/Array.swift; sourceTree = "<group>"; };
+		07BC5F7E1E84B4130084EB20 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = String.swift; path = TheBooks/String.swift; sourceTree = "<group>"; };
+		07D014891E8E0C2B00C841BD /* Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
+		07D0148B1E8E231F00C841BD /* Main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		07D5C8091E87302C00441DCB /* CellToggler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellToggler.swift; sourceTree = "<group>"; };
+		07D5D3981E8DCA11004CA438 /* TabbableTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabbableTextField.swift; sourceTree = "<group>"; };
 		07E5B81A1E7E1C68009783C2 /* ClientsFlow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ClientsFlow.storyboard; sourceTree = "<group>"; };
 		07E5B81C1E7E1F62009783C2 /* Clients.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clients.swift; sourceTree = "<group>"; };
 		07E5B8221E7E2E62009783C2 /* Appointment+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Appointment+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -73,9 +78,8 @@
 		07E5B83B1E7E36C2009783C2 /* DismissSelf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = DismissSelf.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07E5B83E1E7E38AB009783C2 /* ViewAppointment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ViewAppointment.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07E5B8401E7E390E009783C2 /* ViewAppointment.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ViewAppointment.storyboard; sourceTree = "<group>"; };
-		07E5B8421E803B82009783C2 /* UIViewController+Sheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "UIViewController+Sheet.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07E5B8461E806EB2009783C2 /* PresentModallyWithNavigationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentModallyWithNavigationItem.swift; sourceTree = "<group>"; };
-		07E5B84A1E8075E6009783C2 /* Any.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Any.swift; sourceTree = "<group>"; };
+		07E5B84A1E8075E6009783C2 /* Any.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Any.swift; path = TheBooks/Any.swift; sourceTree = "<group>"; };
 		07EF3D1E1E7DE2BC00161A26 /* AppointmentsFlow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AppointmentsFlow.storyboard; sourceTree = "<group>"; };
 		07EF3D201E7DE3FE00161A26 /* Appointments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Appointments.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07EF3D221E7DE99700161A26 /* AppointmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppointmentCell.swift; sourceTree = "<group>"; };
@@ -118,12 +122,15 @@
 			isa = PBXGroup;
 			children = (
 				077DB2BC1E7DDF3800B05042 /* AppDelegate.swift */,
+				07D014891E8E0C2B00C841BD /* Authentication.swift */,
 				077DB2C01E7DDF3800B05042 /* Main.storyboard */,
+				07D0148B1E8E231F00C841BD /* Main.swift */,
 				07EF3D1C1E7DE29700161A26 /* Appointments */,
 				07EF3D1D1E7DE2A300161A26 /* Clients */,
 				07E5B83D1E7E387F009783C2 /* ViewAppointment */,
 				07E5B8361E7E32B7009783C2 /* ViewClient */,
 				07E5B8491E8075D8009783C2 /* Helpers */,
+				07D5D39A1E8DDAC7004CA438 /* Extensions */,
 				07E5B8481E80734D009783C2 /* Custom Segues */,
 				077DB2C61E7DDF3800B05042 /* Assets.xcassets */,
 				077DB2C81E7DDF3800B05042 /* LaunchScreen.storyboard */,
@@ -131,6 +138,24 @@
 				07E5B8011E7DF469009783C2 /* CoreData */,
 			);
 			path = TheBooks;
+			sourceTree = "<group>";
+		};
+		07D5D39A1E8DDAC7004CA438 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				07803FA91E8A10F000A90199 /* UINavigationController.swift */,
+				07803FAB1E8A10FA00A90199 /* UIView.swift */,
+				07803FAC1E8A10FA00A90199 /* UIViewController.swift */,
+				074761961E84BF80000EFFC2 /* Closure.swift */,
+				074761971E84BF80000EFFC2 /* Date.swift */,
+				074761981E84BF80000EFFC2 /* Dictionary.swift */,
+				07E5B84A1E8075E6009783C2 /* Any.swift */,
+				07BC5F7C1E84B4000084EB20 /* Array.swift */,
+				07BC5F7E1E84B4130084EB20 /* String.swift */,
+				079846351E8775CA003F3AC9 /* UIDatePicker.swift */,
+			);
+			name = Extensions;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		07E5B8011E7DF469009783C2 /* CoreData */ = {
@@ -176,18 +201,8 @@
 		07E5B8491E8075D8009783C2 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				07D5D3981E8DCA11004CA438 /* TabbableTextField.swift */,
 				07D5C8091E87302C00441DCB /* CellToggler.swift */,
-				07E5B8421E803B82009783C2 /* UIViewController+Sheet.swift */,
-				07803FA91E8A10F000A90199 /* UINavigationController.swift */,
-				07803FAB1E8A10FA00A90199 /* UIView.swift */,
-				07803FAC1E8A10FA00A90199 /* UIViewController.swift */,
-				074761961E84BF80000EFFC2 /* Closure.swift */,
-				074761971E84BF80000EFFC2 /* Date.swift */,
-				074761981E84BF80000EFFC2 /* Dictionary.swift */,
-				07E5B84A1E8075E6009783C2 /* Any.swift */,
-				07BC5F7C1E84B4000084EB20 /* Array.swift */,
-				07BC5F7E1E84B4130084EB20 /* String.swift */,
-				079846351E8775CA003F3AC9 /* UIDatePicker.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -360,15 +375,16 @@
 				073D189C1E876DEE00890B7F /* DurationPicker.swift in Sources */,
 				07D5C80A1E87302C00441DCB /* CellToggler.swift in Sources */,
 				07BC5F7D1E84B4000084EB20 /* Array.swift in Sources */,
+				07D5D3991E8DCA11004CA438 /* TabbableTextField.swift in Sources */,
 				07E5B81D1E7E1F62009783C2 /* Clients.swift in Sources */,
 				077DB2C51E7DDF3800B05042 /* TheBooks.xcdatamodeld in Sources */,
 				07EF3D211E7DE3FE00161A26 /* Appointments.swift in Sources */,
+				07D0148A1E8E0C2B00C841BD /* Authentication.swift in Sources */,
 				07E5B82A1E7E2E62009783C2 /* Appointment+CoreDataClass.swift in Sources */,
 				07E5B82E1E7E2E62009783C2 /* Client+CoreDataClass.swift in Sources */,
 				07803FAA1E8A10F000A90199 /* UINavigationController.swift in Sources */,
 				07E5B84B1E8075E6009783C2 /* Any.swift in Sources */,
 				079846361E8775CA003F3AC9 /* UIDatePicker.swift in Sources */,
-				07E5B8431E803B82009783C2 /* UIViewController+Sheet.swift in Sources */,
 				07E5B83F1E7E38AB009783C2 /* ViewAppointment.swift in Sources */,
 				07E5B8381E7E3310009783C2 /* ViewClient.swift in Sources */,
 				07E5B82F1E7E2E62009783C2 /* Client+CoreDataProperties.swift in Sources */,
@@ -381,6 +397,7 @@
 				07E5B82B1E7E2E62009783C2 /* Appointment+CoreDataProperties.swift in Sources */,
 				07BC5F7F1E84B4130084EB20 /* String.swift in Sources */,
 				07EF3D231E7DE99700161A26 /* AppointmentCell.swift in Sources */,
+				07D0148C1E8E231F00C841BD /* Main.swift in Sources */,
 				07E5B8471E806EB2009783C2 /* PresentModallyWithNavigationItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -453,6 +470,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -495,6 +513,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -511,7 +530,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.erkalicious.TheBooks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -526,7 +544,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.erkalicious.TheBooks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

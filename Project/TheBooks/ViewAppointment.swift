@@ -12,7 +12,7 @@ public let APPOINTMENT_UPDATED_NOTIFICATION = Notification.Name("appointment upd
 	APPOINTMENT_CREATED_NOTIFICATION = Notification.Name("appointment created")
 
 class ViewAppointment: UITableViewController {
-	let context = (UIApplication.shared.delegate as! AppDelegate).context
+	let context = AppDelegate.instance.context
 	let center = NotificationCenter.default
 	
 	var appointment: Appointment?
@@ -161,7 +161,7 @@ class ViewAppointment: UITableViewController {
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		toggler.didSelect(rowAt: indexPath, for: tableView)
 		
-		if tableView.cellForRow(at: indexPath) == deleteCell {
+		if tableView.cellForRow(at: indexPath)! == deleteCell {
 			self.tableView.deselectRow(at: indexPath, animated: true)
 			self.presentSheet(
 				("Cancel", .cancel, nil),

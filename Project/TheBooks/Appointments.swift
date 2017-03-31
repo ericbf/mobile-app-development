@@ -9,7 +9,7 @@
 import UIKit
 
 class Appointments: UITableViewController {
-	private let context = (UIApplication.shared.delegate as! AppDelegate).context
+	private let context = AppDelegate.instance.context
 	private let center = NotificationCenter.default
 	
 	private var sections: [String: [Appointment]] = [:]
@@ -226,8 +226,10 @@ class Appointments: UITableViewController {
 			
 			selectCell(for: appointment)
 			
-			delay(0.1) {
-				self.tableView.deselectRow(at: self.tableView.indexPathForSelectedRow!, animated: true)
+			if let indexPath = self.tableView.indexPathForSelectedRow {
+				delay(0.1) {
+					self.tableView.deselectRow(at: indexPath, animated: true)
+				}
 			}
 		}
 	}

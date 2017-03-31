@@ -39,7 +39,7 @@ private let keys: [Character] = [
 ]
 
 class Clients: UITableViewController, UISearchResultsUpdating {
-	let context = (UIApplication.shared.delegate as! AppDelegate).context
+	let context = AppDelegate.instance.context
 	let center = NotificationCenter.default
 	
 	var sections: [Character: [Client]] = [:]
@@ -235,8 +235,10 @@ class Clients: UITableViewController, UISearchResultsUpdating {
 			
 			selectCell(for: client)
 			
-			delay(0.1) {
-				self.tableView.deselectRow(at: , animated: true)
+			if let indexPath = self.tableView.indexPathForSelectedRow {
+				delay(0.1) {
+					self.tableView.deselectRow(at: indexPath, animated: true)
+				}
 			}
 		}
 	}

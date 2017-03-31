@@ -7,4 +7,6 @@ use_frameworks!
 
 target 'TheBooks' do
 	pod "PromiseKit", "~> 4.0"
+	pod "SwiftKeychainWrapper", "~> 3.0"
+	pod "BKPasscodeView", "~> 0.1.2"
 end
